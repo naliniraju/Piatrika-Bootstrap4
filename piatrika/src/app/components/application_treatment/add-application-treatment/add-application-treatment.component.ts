@@ -5,7 +5,7 @@ import { ApplicationTreatmentService } from 'src/app/services/application_treatm
 import { LandVillageService } from 'src/app/services/land_village/land-village.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
-
+import { BsDatepickerConfig} from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'app-add-application-treatment',
@@ -13,20 +13,31 @@ import { Location } from '@angular/common';
   styleUrls: ['./add-application-treatment.component.css']
 })
 export class AddApplicationTreatmentComponent implements OnInit {
+  // date:Date = new Date(2018, 0, 30);
 
   applicationtreatment: ApplicationTreatment = new ApplicationTreatment();
   submitted = false;
   applicationtreatments: ApplicationTreatment[];
   landvillages: LandVillage[];
-  
-
+  datePickerConfig:Partial<BsDatepickerConfig>;
   constructor(
     private applicationtreatmentService: ApplicationTreatmentService,
      private landvillageService: LandVillageService,
     private router: Router,
     private location: Location
-  ) { }
+  ) { 
+    
+    // this.datePickerConfig = Object.assign({},
+    // {
+    //   containerClass: 'theme-green',
+    //   showWeekNumbers: false,
+    //   minDate: new Date(2018, 0, 1),
+    //   maxDate: new Date(2050, 11, 31),
+    //   dateInputFormat: 'DD/MM/YYYY'
+    // });
+  }
   ngOnInit() {
+    
     this.landvillageService.getLandVillageDetails().subscribe(data=>this.landvillages=data);
   };
 

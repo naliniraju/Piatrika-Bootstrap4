@@ -3,8 +3,8 @@
       <div class="form-row">
     <div class="form-group col-md-6">
       <label for="date">Date</label>
-      <input type="date" class="form-control" id="date" placeholder="Enter Date" required maxlength="45"
-        [(ngModel)]="applicationtreatment.date" name="date" #date="ngModel">
+      <input type="text" class="form-control" id="date" placeholder="Enter Date" required maxlength="45"
+        [(ngModel)]="applicationtreatment.date" name="date" #date="ngModel" bsDatepicker [bsConfig]="datePickerConfig">
       <div [hidden]="date.valid || date.pristine" class="alert alert-danger">
         Date is required
       </div>

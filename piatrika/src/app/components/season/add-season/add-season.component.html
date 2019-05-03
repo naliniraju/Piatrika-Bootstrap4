@@ -19,16 +19,16 @@
 </div>
 <div class="form-group col-md-6">
   <label for="expected_harvesting">Expected_Harvesting</label>
-  <input type="date" class="form-control" id="expected_harvesting" placeholder="Enter expected_harvesting" required
-    [(ngModel)]="season.expected_harvesting" name="expected_harvesting" #expected_harvesting="ngModel">
+  <input type="text" class="form-control" id="expected_harvesting" placeholder="Enter expected_harvesting" required
+    [(ngModel)]="season.expected_harvesting" name="expected_harvesting" #expected_harvesting="ngModel" bsDatepicker [bsConfig]="datePickerConfig">
   <div [hidden]="expected_harvesting.valid || expected_harvesting.pristine" class="alert alert-danger">
     Expected_Harvesting is required
   </div>
 </div>
 <div class="form-group col-md-6">
   <label for="expected_planting">Expected_Planting</label>
-  <input type="date" class="form-control" id="expected_planting" placeholder="Enter expected_planting" required
-    [(ngModel)]="season.expected_planting" name="expected_planting" #expected_planting="ngModel">
+  <input type="text" class="form-control" id="expected_planting" placeholder="Enter expected_planting" required
+    [(ngModel)]="season.expected_planting" name="expected_planting" #expected_planting="ngModel" bsDatepicker [bsConfig]="datePickerConfig">
   <div [hidden]="expected_planting.valid || expected_planting.pristine" class="alert alert-danger">
     Expected_Planting is required
   </div>
@@ -110,16 +110,16 @@
 </div>
 <div class="form-group col-md-6">
   <label for="offer_date">Offer_Date</label>
-  <input type="date" class="form-control" id="Offer_Date" placeholder="Enter offer_date" required
-    [(ngModel)]="season.offer_date" name="offer_date" #offer_date="ngModel">
+  <input type="text" class="form-control" id="Offer_Date" placeholder="Enter offer_date" required
+    [(ngModel)]="season.offer_date" name="offer_date" #offer_date="ngModel" bsDatepicker [bsConfig]="datePickerConfig">
   <div [hidden]="offer_date.valid || offer_date.pristine" class="alert alert-danger">
     Offer_Date is required
   </div>
 </div>
 <div class="form-group col-md-6">
   <label for="agreement_date">Agreement_Date</label>
-  <input type="date" class="form-control" id="agreement_date" placeholder="Enter agreement_date" required
-    [(ngModel)]="season.agreement_date" name="agreement_date" #agreement_date="ngModel">
+  <input type="text" class="form-control" id="agreement_date" placeholder="Enter agreement_date" required
+    [(ngModel)]="season.agreement_date" name="agreement_date" #agreement_date="ngModel" bsDatepicker [bsConfig]="datePickerConfig">
   <div [hidden]="agreement_date.valid || agreement_date.pristine" class="alert alert-danger">
     Agreement_Date is required
   </div>
