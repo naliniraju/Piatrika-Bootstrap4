@@ -1,0 +1,43 @@
+<div>
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>First_Name</th>
+            <th>Middle_Name</th>
+            <th>Last_Name</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>Email</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let person of persons">
+
+            <td>{{person.first_name}}</td>
+            <td>{{person.middle_name}}</td>
+            <td>{{person.last_name}}</td>
+            <td>{{person.address}}</td>
+            <td>{{person.city}}</td>
+            <td>{{person.email}}</td>
+           
+            <td>
+              <div class="btn-group btn-group-sm" style="background-color: transparent;">
+                <button class="btn btn-primary myspan" [routerLink]="['/persons', person.id]">Edit</button>
+                <span></span>
+                <button class="btn btn-danger myspan" (click)="delete(person.id)">Delete</button>
+              </div>
+            </td>
+            
+          </tr>
+        
+        </tbody>
+      </table>
+   
+  
+  </div>
+  <div>
+    <button class="btn btn-sm btn-warning myspan" (click)="goBack()">Back</button>
+  </div>
+  
+  

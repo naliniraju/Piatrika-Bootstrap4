@@ -1,0 +1,77 @@
+<div [hidden]="submitted">
+    <form #addLoanForm="ngForm">
+        <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="sb_acno">Sb_Acno</label>
+        <input type="text" class="form-control" id="sb_acno" placeholder="Enter sb_acno" required maxlength="45"
+          [(ngModel)]="loan.sb_acno" name="sb_acno" #sb_acno="ngModel">
+        <div [hidden]="sb_acno.valid || sb_acno.pristine" class="alert alert-danger">
+            Sb_Acno is required
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="loan_no">Loan_No</label>
+        <input type="text" class="form-control" id="loan_no" placeholder="Enter loan_no" required maxlength="45"
+          [(ngModel)]="loan.loan_no" name="loan_no" #loan_no="ngModel">
+        <div [hidden]="loan_no.valid || loan_no.pristine" class="alert alert-danger">
+            Loan_No is required
+        </div>
+      </div>
+        <div class="form-group col-md-6">
+        <label for="ledger_no">Ledger_No</label>
+        <input type="text" class="form-control" id="ledger_no" placeholder="Enter ledger_no" required maxlength="45"
+          [(ngModel)]="loan.ledger_no" name="ledger_no" #ledger_no="ngModel">
+        <div [hidden]="ledger_no.valid || ledger_no.pristine" class="alert alert-danger">
+            Ledger_No is required
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="loan_ac_ledger_no">Loan_Ac_Ledger_No</label>
+        <input type="text" class="form-control" id="loan_ac_ledger_no" placeholder="Enter loan_ac_ledger_no" required maxlength="45"
+          [(ngModel)]="loan.loan_ac_ledger_no" name="loan_ac_ledger_no" #loan_ac_ledger_no="ngModel">
+        <div [hidden]="loan_ac_ledger_no.valid || loan_ac_ledger_no.pristine" class="alert alert-danger">
+            Loan_Ac_Ledger_No is required
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="folio_no">Folio_No</label>
+        <input type="text" class="form-control" id="folio_no" placeholder="Enter folio_no" required maxlength="45"
+          [(ngModel)]="loan.folio_no" name="folio_no" #folio_no="ngModel">
+        <div [hidden]="folio_no.valid || folio_no.pristine" class="alert alert-danger">
+            Folio_No is required
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="loan_ac_folio_no">Loan_Ac_Folio_No</label>
+        <input type="text" class="form-control" id="loan_ac_folio_no" placeholder="Enter loan_ac_folio_no" required maxlength="45"
+          [(ngModel)]="loan.loan_ac_folio_no" name="loan_ac_folio_no" #loan_ac_folio_no="ngModel">
+        <div [hidden]="loan_ac_folio_no.valid || loan_ac_folio_no.pristine" class="alert alert-danger">
+            Loan_Ac_Folio_No is required
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+          <label for="Farmers_id">Farmers_Id</label>
+          <select class="form-control" id="Farmers_id" name="Farmers_id" [(ngModel)]="loan.Farmers_id" #Farmers_id="ngModel">
+              <option *ngFor="let farmersloan of farmers" [value]="farmersloan.id">
+                  {{farmersloan.id}}
+                </option> 
+            </select>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="payment_mode">payment_Mode</label>
+            <input type="text" class="form-control" id="payment_mode" placeholder="Enter payment_mode" required
+              [(ngModel)]="loan.payment_mode" name="payment_mode" #payment_mode="ngModel">
+            <div [hidden]="payment_mode.valid || payment_mode.pristine" class="alert alert-danger">
+              Payment_Mode is required
+            </div>
+          </div>
+        </div>
+  
+  
+      <div class="btn-group btn-group-sm">
+        <button type="button" class="btn btn-primary" (click)="addLoanForm.reset()">Clear</button>
+        <button type="button" class="btn btn-primary" (click)="addLoanDetail()"
+          [disabled]="!addLoanForm.form.valid">Save</button>
+      </div>
+    </form>
+  </div>

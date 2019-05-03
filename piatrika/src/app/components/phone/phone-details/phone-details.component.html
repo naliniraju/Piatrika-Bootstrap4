@@ -1,0 +1,35 @@
+<div [hidden]="submitted">
+  <form #editPhoneForm="ngForm">
+      <div class="form-row">
+     <div class="form-group col-md-6">
+      <label for="phone_type">Phone_Type</label>
+      <input type="text" class="form-control" id="phone_type" placeholder="Enter phone_type" required maxlength="45"
+        [(ngModel)]="phone.phone_type" name="phone_type" #phone_type="ngModel">
+      <div [hidden]="phone_type.valid || phone_type.pristine" class="alert alert-danger">
+        Phone_Type is required
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="number">Number</label>
+      <input type="text" class="form-control" id="number" placeholder="Enter number" required maxlength="45"
+        [(ngModel)]="phone.number" name="number" #number="ngModel">
+      <div [hidden]="number.valid || number.pristine" class="alert alert-danger">
+        Number is required
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="person_id">Person_Id</label>
+      <select class="form-control" id="person_id" name="person_id" [(ngModel)]="phone.person_id" #person_id="ngModel">
+          <option *ngFor="let phoneperson of persons" [value]="phoneperson.id">
+              {{phoneperson.id}}
+            </option> 
+        </select>
+    </div>
+      </div>
+
+    <div class="btn-group btn-group-sm">
+      <button type="button" class="btn btn-primary" (click)="update()"
+        [disabled]="!editPhoneForm.form.valid">Update</button>
+    </div>
+  </form>
+</div>

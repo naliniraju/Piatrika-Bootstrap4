@@ -1,0 +1,149 @@
+<div [hidden]="submitted">
+    <form #editSeasonForm="ngForm">
+        <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="season_start">Season_Start</label>
+            <input type="date" class="form-control" id="season_start" placeholder="Enter season_start" required
+              [(ngModel)]="season.season_start" name="season_start" #season_start="ngModel">
+            <div [hidden]="season_start.valid || season_start.pristine" class="alert alert-danger">
+              Season_Start is required
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="extent">Extent</label>
+            <input type="text" class="form-control" id="extent" placeholder="Enter extent" required maxlength="45"
+              [(ngModel)]="season.extent" name="extent" #extent="ngModel">
+            <div [hidden]="extent.valid || extent.pristine" class="alert alert-danger">
+              Extent is required
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="expected_harvesting">Expected_Harvesting</label>
+            <input type="date" class="form-control" id="expected_harvesting" placeholder="Enter expected_harvesting" required
+              [(ngModel)]="season.expected_harvesting" name="expected_harvesting" #expected_harvesting="ngModel">
+            <div [hidden]="expected_harvesting.valid || expected_harvesting.pristine" class="alert alert-danger">
+              Expected_Harvesting is required
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="expected_planting">Expected_Planting</label>
+            <input type="date" class="form-control" id="expected_planting" placeholder="Enter expected_planting" required
+              [(ngModel)]="season.expected_planting" name="expected_planting" #expected_planting="ngModel">
+            <div [hidden]="expected_planting.valid || expected_planting.pristine" class="alert alert-danger">
+              Expected_Planting is required
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+              <label for="Farmers_id">Formers_Id</label>
+              <select class="form-control" id="Farmers_id" name="Farmers_id" [(ngModel)]="season.Farmers_id"
+                #Farmers_id="ngModel">
+                <option *ngFor="let seasonfarmers of farmers" [value]="seasonfarmers.id">
+                  {{seasonfarmers.id}}
+                </option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="land_village_id">Land_Village_Id</label>
+              <select class="form-control" id="land_village_id" name="land_village_id" [(ngModel)]="season.land_village_id"
+                #land_village_id="ngModel">
+                <option *ngFor="let seasonlandvillages of landvillages" [value]="seasonlandvillages.id">
+                  {{seasonlandvillages.id}}
+                </option>
+              </select>
+            </div>
+          <div class="form-group col-md-6">
+            <label for="current_variety">Current_Variety</label>
+            <input type="text" class="form-control" id="current_variety" placeholder="Enter current_variety" required maxlength="45"
+              [(ngModel)]="season.current_variety" name="current_variety" #current_variety="ngModel">
+            <div [hidden]="current_variety.valid || current_variety.pristine" class="alert alert-danger">
+              Current_Variety is required
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="previous_variety">Previous_Variety</label>
+            <input type="text" class="form-control" id="previous_variety" placeholder="Enter previous_variety" required maxlength="45"
+              [(ngModel)]="season.previous_variety" name="previous_variety" #previous_variety="ngModel">
+            <div [hidden]="previous_variety.valid || previous_variety.pristine" class="alert alert-danger">
+              Previous_Variety is required
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="plant_type">Plant_Type</label>
+            <input type="text" class="form-control" id="plant_type" placeholder="Enter plant_type" required
+              [(ngModel)]="season.plant_type" name="plant_type" #plant_type="ngModel">
+            <div [hidden]="plant_type.valid || plant_type.pristine" class="alert alert-danger">
+              Plant_Type is required
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="total_acres">Total_Acres</label>
+            <input type="text" class="form-control" id="total_acres" placeholder="Enter total_acres" required maxlength="45"
+              [(ngModel)]="season.total_acres" name="total_acres" #total_acres="ngModel">
+            <div [hidden]="total_acres.valid || total_acres.pristine" class="alert alert-danger">
+              Total_Acres is required
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="measurement_acres">Measurement_Acres</label>
+            <input type="text" class="form-control" id="measurement_acres" placeholder="Enter measurement_acres" required maxlength="45"
+              [(ngModel)]="season.measurement_acres" name="measurement_acres" #measurement_acres="ngModel">
+            <div [hidden]="measurement_acres.valid || measurement_acres.pristine" class="alert alert-danger">
+              Measurement_Acres is required
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="estimated_yield">Estimated_Yield</label>
+            <input type="text" class="form-control" id="estimated_yield" placeholder="Enter estimated_yield" required maxlength="45"
+              [(ngModel)]="season.estimated_yield" name="estimated_yield" #estimated_yield="ngModel">
+            <div [hidden]="estimated_yield.valid || estimated_yield.pristine" class="alert alert-danger">
+              Estimated_Yield is required
+            </div>
+          </div>
+        
+          <div class="form-group col-md-6">
+            <label for="offer_no">Offer_No</label>
+            <input type="text" class="form-control" id="offer_no" placeholder="Enter offer_no" required maxlength="45"
+              [(ngModel)]="season.offer_no" name="offer_no" #offer_no="ngModel">
+            <div [hidden]="offer_no.valid || offer_no.pristine" class="alert alert-danger">
+              Offer_No is required
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="offer_date">Village_Code</label>
+            <input type="date" class="form-control" id="Offer_Date" placeholder="Enter offer_date" required
+              [(ngModel)]="season.offer_date" name="offer_date" #offer_date="ngModel">
+            <div [hidden]="offer_date.valid || offer_date.pristine" class="alert alert-danger">
+              Offer_Date is required
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="agreement_date">Agreement_Date</label>
+            <input type="date" class="form-control" id="agreement_date" placeholder="Enter agreement_date" required
+              [(ngModel)]="season.agreement_date" name="agreement_date" #agreement_date="ngModel">
+            <div [hidden]="agreement_date.valid || agreement_date.pristine" class="alert alert-danger">
+              Agreement_Date is required
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="agreement_acre">Agreement_Acre</label>
+            <input type="number" class="form-control" id="agreement_acre" placeholder="Enter agreement_acre" required
+              [(ngModel)]="season.agreement_acre" name="agreement_acre" #agreement_acre="ngModel">
+            <div [hidden]="agreement_acre.valid || agreement_acre.pristine" class="alert alert-danger">
+              Agreement_Acre is required
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="agreement_tonne">Agreement_Tonne</label>
+            <input type="number" class="form-control" id="agreement_tonne" placeholder="Enter agreement_tonne" required
+              [(ngModel)]="season.agreement_tonne" name="agreement_tonne" #agreement_tonne="ngModel">
+            <div [hidden]="agreement_tonne.valid || agreement_tonne.pristine" class="alert alert-danger">
+              Agreement_Tonne is required
+            </div>
+          </div>
+        </div>
+  <div class="btn-group btn-group-sm">
+      <button type="button" class="btn btn-primary" (click)="update()"
+        [disabled]="!editSeasonForm.form.valid">Update</button>
+    </div>
+  </form>
+  </div>

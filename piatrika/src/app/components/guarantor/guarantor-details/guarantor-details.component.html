@@ -1,0 +1,47 @@
+<div [hidden]="submitted">
+    <form #editGuarantorForm="ngForm">
+            <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="season_id">Season_Id</label>
+            <select class="form-control" id="season_id" name="season_id" [(ngModel)]="guarantor.season_id" #season_id="ngModel">
+                <option *ngFor="let guarantorseason of seasons" [value]="guarantorseason.id">
+                    {{guarantorseason.id}}
+                  </option> 
+              </select>
+          </div>
+          <div class="form-group col-md-6">
+              <label for="season_Farmers_id">Season_Farmers_Id</label>
+              <select class="form-control" id="season_Farmers_id" name="season_Farmers_id" [(ngModel)]="guarantor.season_Farmers_id" #season_Farmers_id="ngModel">
+                  <option *ngFor="let farmerguarantor of seasons" [value]="farmerguarantor.id">
+                      {{farmerguarantor.id}}
+                    </option> 
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="season_land_village_id">Season_Land_Village_Id</label>
+                <select class="form-control" id="season_land_village_id" name="season_land_village_id" [(ngModel)]="guarantor.season_land_village_id" #season_land_village_id="ngModel">
+                    <option *ngFor="let guarantorlandvillage of seasons" [value]="guarantorlandvillage.id">
+                        {{guarantorlandvillage.id}}
+                      </option> 
+                  </select>
+              </div>
+              <div class="form-group col-md-6">
+                  <label for="person_id">Person_Id</label>
+                  <select class="form-control" id="person_id" name="person_id" [(ngModel)]="guarantor.person_id" #person_id="ngModel">
+                      <option *ngFor="let guarantorperson of persons" [value]="guarantorperson.id">
+                          {{guarantorperson.id}}
+                        </option> 
+                    </select>
+                </div>
+
+            </div>
+  
+      
+  
+  
+      <div class="btn-group btn-group-sm">
+        <button type="button" class="btn btn-primary" (click)="update()"
+          [disabled]="!editGuarantorForm.form.valid">Update</button>
+      </div>
+    </form>
+  </div>

@@ -1,0 +1,44 @@
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>CSI_Code</th>
+        <th>RNo</th>
+        <th>SysNo</th>
+        <th>Village_Id</th>
+        <th>CSI_Name</th>
+        <th>Litrary_Status</th>
+        <th>City</th>
+        <th>Person_ID</th>
+        <th>Ryot_Photo</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let farmer of farmers">
+
+        <td>{{farmer.csi_code}}</td>
+        <td>{{farmer.rno}}</td>
+        <td>{{farmer.sysno}}</td>
+        <td>{{farmer.village_id}}</td>
+        <td>{{farmer.csi_name}}</td>
+        <td>{{farmer.litrary_status}}</td>
+        <td>{{farmer.City}}</td>
+        <td>{{farmer.person_id}}</td>
+        <td>{{farmer.ryot_photo}}</td>
+        <td>
+          <div class="btn-group btn-group-sm" style="background-color: transparent;">
+            <button class="btn btn-primary myspan" [routerLink]="['/farmers', farmer.id]">Edit</button>
+            <span></span>
+            <button class="btn btn-danger myspan" (click)="delete(farmer.id)">Delete</button>
+          </div>
+        </td>
+
+      </tr>
+
+    </tbody>
+  </table>
+
+
+<div>
+  <button class="btn btn-sm btn-warning myspan" (click)="goBack()">Back</button>
+</div>

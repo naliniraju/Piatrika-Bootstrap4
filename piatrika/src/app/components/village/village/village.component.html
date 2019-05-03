@@ -1,0 +1,37 @@
+<div>
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Division_Id</th>
+            <th>Village_Code</th>
+            <th>Village_Name</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let village of villages">
+
+            <td>{{village.division_id}}</td>
+            <td>{{village.village_code}}</td>
+            <td>{{village.village_name}}</td>
+           
+            <td>
+              <div class="btn-group btn-group-sm" style="background-color: transparent;">
+                <button class="btn btn-primary myspan" [routerLink]="['/villages', village.id]">Edit</button>
+                <span></span>
+                <button class="btn btn-danger myspan" (click)="delete(village.id)">Delete</button>
+              </div>
+            </td>
+            
+          </tr>
+        
+        </tbody>
+      </table>
+   
+  
+  </div>
+  <div>
+    <button class="btn btn-sm btn-warning myspan" (click)="goBack()">Back</button>
+  </div>
+  
+  

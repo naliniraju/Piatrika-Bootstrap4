@@ -1,0 +1,63 @@
+<div>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Season_Start</th>
+          <th>Extent</th>
+          <th>expected_harvesting</th>
+          <th>expected_planting</th>
+          <th>Farmers_id</th>
+          <th>land_village_id</th>
+          <th>current_variety</th>
+          <th>previous_variety</th>
+          <th>plant_type</th>
+          <th>total_acres</th>
+          <th>measurement_acres</th>
+          <th>estimated_yield</th>
+          <th>offer_no</th>
+          <th>offer_date</th>
+          <th>agreement_date</th>
+          <th>agreement_acre</th>
+          <th>agreement_tonne</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let season of seasons">
+  
+          <td>{{season.season_start}}</td>
+          <td>{{season.extent}}</td>
+          <td>{{season.expected_harvesting}}</td>
+          <td>{{season.expected_planting}}</td>
+          <td>{{season.Farmers_id}}</td>
+          <td>{{season.land_village_id}}</td>
+          <td>{{season.current_variety}}</td>
+          <td>{{season.previous_variety}}</td>
+          <td>{{season.plant_type}}</td>
+          <td>{{season.total_acres}}</td>
+          <td>{{season.measurement_acres}}</td>
+          <td>{{season.estimated_yield}}</td>
+          <td>{{season.offer_no}}</td>
+          <td>{{season.offer_date}}</td>
+          <td>{{season.agreement_date}}</td>
+          <td>{{season.agreement_acre}}</td>
+          <td>{{season.agreement_tonne}}</td>
+           <td>
+             
+            <div class="btn-group btn-group-sm" style="background-color: transparent;">
+              <button class="btn btn-primary myspan" [routerLink]="['/seasons', season.id]">Edit</button>
+              <span></span>
+              <button class="btn btn-danger myspan" (click)="delete(season.id)">Delete</button>
+            </div>
+          </td>
+  
+        </tr>
+  
+      </tbody>
+    </table>
+  
+  
+  </div>
+  <div>
+    <button class="btn btn-sm btn-warning myspan" (click)="goBack()">Back</button>
+  </div>

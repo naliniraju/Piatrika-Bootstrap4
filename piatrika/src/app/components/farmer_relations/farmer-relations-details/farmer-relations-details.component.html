@@ -1,0 +1,35 @@
+<div [hidden]="submitted">
+  <form #editFarmerRelationForm="ngForm">
+      <div class="form-row">
+     <div class="form-group col-md-6">
+      <label for="related_to_csi">Related_To_Csi</label>
+      <input type="text" class="form-control" id="related_to_csi" placeholder="Enter related_to_csi" required maxlength="45"
+        [(ngModel)]="farmerrelation.related_to_csi" name="related_to_csi" #related_to_csi="ngModel">
+      <div [hidden]="related_to_csi.valid || related_to_csi.pristine" class="alert alert-danger">
+        Related_To_Csi is required
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="relationship_type">Relationship_Type</label>
+      <input type="text" class="form-control" id="relationship_type" placeholder="Enter relationship_type" required maxlength="45"
+        [(ngModel)]="farmerrelation.relationship_type" name="relationship_type" #relationship_type="ngModel">
+      <div [hidden]="relationship_type.valid || relationship_type.pristine" class="alert alert-danger">
+        Relationship_Type is required
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="person_id">Person_Id</label>
+      <select class="form-control" id="person_id" name="person_id" [(ngModel)]="farmerrelation.person_id" #person_id="ngModel">
+          <option *ngFor="let farmerrelationperson of persons" [value]="farmerrelationperson.id">
+              {{farmerrelationperson.id}}
+            </option> 
+        </select>
+    </div>
+      </div>
+
+    <div class="btn-group btn-group-sm">
+      <button type="button" class="btn btn-primary" (click)="update()"
+        [disabled]="!editFarmerRelationForm.form.valid">Update</button>
+    </div>
+  </form>
+</div>

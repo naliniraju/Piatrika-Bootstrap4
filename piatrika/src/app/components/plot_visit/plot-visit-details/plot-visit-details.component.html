@@ -1,0 +1,48 @@
+<div [hidden]="submitted">
+  <form #editPlotVisitForm="ngForm">
+      <div class="form-row">
+     <div class="form-group col-md-6">
+      <label for="condition">Condition</label>
+      <input type="text" class="form-control" id="condition" placeholder="Enter condition" required maxlength="45"
+        [(ngModel)]="plotvisit.condition" name="condition" #condition="ngModel">
+      <div [hidden]="condition.valid || condition.pristine" class="alert alert-danger">
+        Condition is required
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="text">Identification</label>
+      <input type="text" class="form-control" id="identification" placeholder="Enter identification" required maxlength="45"
+        [(ngModel)]="plotvisit.identification" name="identification" #identification="ngModel">
+      <div [hidden]="identification.valid || identification.pristine" class="alert alert-danger">
+        Identification is required
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="advice_given">Advice_Given</label>
+      <input type="text" class="form-control" id="advice_given" placeholder="Enter advice_given" required
+        [(ngModel)]="plotvisit.advice_given" name="advice_given" #advice_given="ngModel">
+      <div [hidden]="advice_given.valid || advice_given.pristine" class="alert alert-danger">
+        Advice_Given is required
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="season_id">Season_Id</label>
+      <select class="form-control" id="season_id" name="season_id" [(ngModel)]="plotvisit.season_id" #season_id="ngModel">
+          <option *ngFor="let plotvisitseason of seasons" [value]="plotvisitseason.id">
+              {{plotvisitseason.id}}
+            </option> 
+        </select>
+    </div>
+     <div class="form-group col-md-6">
+      <label for="timestamp">Timestamp</label>
+      <input type="date" class="form-control" id="timestamp" placeholder="Enter timestamp" required
+        [(ngModel)]="plotvisit.timestamp" name="timestamp" #timestamp="ngModel">
+    </div>
+      </div>
+
+    <div class="btn-group btn-group-sm">
+      <button type="button" class="btn btn-primary" (click)="update()"
+        [disabled]="!editPlotVisitForm.form.valid">Update</button>
+    </div>
+  </form>
+</div>

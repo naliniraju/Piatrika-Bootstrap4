@@ -1,0 +1,32 @@
+<div>
+  <table class="table table-bordered table-responsive">
+      <thead>
+        <tr>
+          <th>Variety</th>
+          <th>Variety_Scientific_Name</th>
+          <th>Crop_Id</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let varietee of varietees">
+
+          <td>{{varietee.variety}}</td>
+          <td>{{varietee.variety_scientific_name}}</td>
+          <td>{{varietee.crop_id}}</td>         
+          <td>
+            <div class="btn-group btn-group-sm" style="background-color: transparent;">
+              <button class="btn btn-primary myspan" [routerLink]="['/varietees', varietee.id]">Edit</button>
+              <span></span>
+              <button class="btn btn-danger myspan" (click)="delete(varietee.id)">Delete</button>
+            </div>
+          </td>
+          
+        </tr>
+      
+      </tbody>
+    </table>
+ 
+
+</div>
+

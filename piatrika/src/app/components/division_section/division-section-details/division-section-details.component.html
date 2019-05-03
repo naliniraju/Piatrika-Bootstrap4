@@ -1,0 +1,36 @@
+<div [hidden]="submitted">
+    <form #editDivisionDetailForm="ngForm">
+        <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="division">Division</label>
+        <input type="text" class="form-control" id="division" placeholder="Enter division" required maxlength="45"
+          [(ngModel)]="divisionmodel.division" name="division" #division="ngModel">
+        <div [hidden]="division.valid || division.pristine" class="alert alert-danger">
+          Division is required
+        </div>
+      </div>
+  
+      <div class="form-group col-md-6">
+        <label for="section_code">Section_Code</label>
+        <input type="text" class="form-control" id="section_code" placeholder="Enyter section_code" required maxlength="45"
+          [(ngModel)]="divisionmodel.section_code" name="section_code" #section_code="ngModel">
+        <div [hidden]="section_code.valid || section_code.pristine" class="alert alert-danger">
+          Section_Code is required
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="section_name">Section_Name</label>
+        <input type="text" class="form-control" id="section_name" placeholder="Enter section_name" required maxlength="45"
+          [(ngModel)]="divisionmodel.section_name" name="section_name" #section_name="ngModel">
+        <div [hidden]="section_name.valid || section_name.pristine" class="alert alert-danger">
+          Section_Name is required
+        </div>
+      </div>
+        </div>
+  
+      <div class="btn-group btn-group-sm" role="group">
+          <button type="button" class="btn btn-primary" (click)="update()"
+            [disabled]="!editDivisionDetailForm.form.valid">Update</button>
+        </div>
+    </form>
+  </div>

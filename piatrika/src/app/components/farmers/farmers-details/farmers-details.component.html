@@ -1,0 +1,87 @@
+<div [hidden]="submitted">
+    <form #editFarmerDetailForm="ngForm">
+        <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="csi_code">CSI_Code</label>
+        <input type="number" class="form-control" id="csi_code" placeholder="Enter csi_code" required
+          [(ngModel)]="farmer.csi_code" name="csi_code" #csi_code="ngModel">
+        <div [hidden]="csi_code.valid || csi_code.pristine" class="alert alert-danger">
+          CSI_Code is required
+        </div>
+      </div>
+  
+      <div class="form-group col-md-6">
+        <label for="rno">RNO</label>
+        <input type="text" class="form-control" id="rno" placeholder="Enter rno" required maxlength="45" [(ngModel)]="farmer.rno"
+          name="rno" #rno="ngModel">
+        <div [hidden]="rno.valid || rno.pristine" class="alert alert-danger">
+          RNO is required
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="sysno">SysNo</label>
+        <input type="text" class="form-control" id="sysno" placeholder="Enter sysno" required maxlength="45" [(ngModel)]="farmer.sysno"
+          name="sysno" #sysno="ngModel">
+        <div [hidden]="sysno.valid || sysno.pristine" class="alert alert-danger">
+          SysNo is required
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="village_id">Village_Id</label>
+        <select class="form-control" id="village_id" name="village_id" [(ngModel)]="farmer.village_id" #village_id="ngModel">
+            <option *ngFor="let village1 of villages" [value]="village1.id">
+                {{village1.id}}
+              </option> 
+          </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="csi_name">CSI_Name</label>
+        <input type="text" class="form-control" id="csi_name" placeholder="Enter csi_name" required maxlength="45"
+          [(ngModel)]="farmer.csi_name" name="csi_name" #csi_name="ngModel">
+        <div [hidden]="csi_name.valid || csi_name.pristine" class="alert alert-danger">
+          CSI_Name is required
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="litrary_status">Litrary_Status</label>
+        <input type="text" class="form-control" id="litrary_status" placeholder="Enter litrary_status" required maxlength="45"
+          [(ngModel)]="farmer.litrary_status" name="litrary_status" #litrary_status="ngModel">
+        <div [hidden]="litrary_status.valid || litrary_status.pristine" class="alert alert-danger">
+          Litrary_Status is required
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="City">City</label>
+        <input type="text" class="form-control" id="City" placeholder="Enter City" required maxlength="45" 
+        [(ngModel)]="farmer.City"
+          name="City" #City="ngModel">
+        <div [hidden]="City.valid || City.pristine" class="alert alert-danger">
+          City is required
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="person_id">Person_Id</label>
+        <input type="number" class="form-control" id="person_id" placeholder="Enter person_id" required
+          [(ngModel)]="farmer.person_id" name="person_id" #person_id="ngModel">
+        <div [hidden]="person_id.valid || person_id.pristine" class="alert alert-danger">
+          Person_Id is required
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="ryot_photo">Ryot_Photo</label>
+        <input class="form-control" type="file" [(ngModel)]="farmer.ryot_photo" name="ryot_photo" 
+        #ryot_photo="ngModel"
+         (change)="onFileSelect($event)" />
+         <!-- <button class="btn btn-warning" type="submit">Upload</button> -->
+  
+        </div>
+        </div>
+  
+      <div class="btn-group btn-group-sm">
+          <button type="button" class="btn btn-primary" (click)="update()"
+            [disabled]="!editFarmerDetailForm.form.valid">Update</button>
+        </div>
+    </form>
+  </div>
+
+  

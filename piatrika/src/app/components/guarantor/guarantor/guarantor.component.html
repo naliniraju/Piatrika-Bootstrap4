@@ -1,0 +1,39 @@
+<div>
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Season_Id</th>
+            <th>Season_Farmers_Id</th>
+            <th>Season_Land_Village_Id</th>
+            <th>Person_Id</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let guarantor of guarantors">
+
+            <td>{{guarantor.season_id}}</td>
+            <td>{{guarantor.season_Farmers_id}}</td>
+            <td>{{guarantor.season_land_village_id}}</td>
+            <td>{{guarantor.person_id}}</td>
+           
+            <td>
+              <div class="btn-group btn-group-sm" style="background-color: transparent;">
+                <button class="btn btn-primary myspan" [routerLink]="['/guarantors', guarantor.id]">Edit</button>
+                <span></span>
+                <button class="btn btn-danger myspan" (click)="delete(guarantor.id)">Delete</button>
+              </div>
+            </td>
+            
+          </tr>
+        
+        </tbody>
+      </table>
+   
+  
+  </div>
+  <div>
+    <button class="btn btn-sm btn-warning myspan" (click)="goBack()">Back</button>
+  </div>
+  
+  

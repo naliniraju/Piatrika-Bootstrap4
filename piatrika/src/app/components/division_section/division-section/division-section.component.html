@@ -1,0 +1,38 @@
+<div>
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Division</th>
+            <th>Section_Code</th>
+            <th>Section_Name</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let divisionmodel of divisionmodels">
+
+            <td>{{divisionmodel.division}}</td>
+            <td>{{divisionmodel.section_code}}</td>
+            <td>{{divisionmodel.section_name}}</td>
+           
+            <td>
+              <div class="btn-group btn-group-sm" style="background-color: transparent;">
+                <button class="btn btn-primary myspan" [routerLink]="['/divisionmodels', divisionmodel.id]">Edit</button>
+                <span></span>
+                <button class="btn btn-danger myspan" (click)="delete(divisionmodel.id)">Delete</button>
+              </div>
+            </td>
+            
+          </tr>
+        
+        </tbody>
+      </table>
+   
+  
+  </div>
+
+  <div>
+    <button class="btn btn-sm btn-warning myspan" (click)="goBack()">Back</button>
+  </div>
+  
+  

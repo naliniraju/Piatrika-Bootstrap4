@@ -1,0 +1,44 @@
+<div>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>sb_acno</th>
+          <th>loan_no</th>
+          <th>ledger_no</th>
+          <th>loan_ac_ledger_no</th>
+          <th>folio_no</th>
+          <th>loan_ac_folio_no</th>
+          <th>Farmers_id</th>
+          <th>Payment_Mode</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let loan of loans">
+  
+          <td>{{loan.sb_acno}}</td>
+          <td>{{loan.loan_no}}</td>
+          <td>{{loan.ledger_no}}</td>
+          <td>{{loan.loan_ac_ledger_no}}</td>
+          <td>{{loan.folio_no}}</td>
+          <td>{{loan.loan_ac_folio_no}}</td>
+          <td>{{loan.Farmers_id}}</td>
+          <td>{{loan.payment_mode}}</td>
+          <td>
+            <div class="btn-group btn-group-sm" style="background-color: transparent;">
+              <button class="btn btn-primary myspan" [routerLink]="['/loans', loan.id]">Edit</button>
+              <span></span>
+              <button class="btn btn-danger myspan" (click)="delete(loan.id)">Delete</button>
+            </div>
+          </td>
+  
+        </tr>
+  
+      </tbody>
+    </table>
+  
+  
+  </div>
+  <div>
+    <button class="btn btn-sm btn-warning myspan" (click)="goBack()">Back</button>
+  </div>

@@ -1,0 +1,59 @@
+<div [hidden]="submitted">
+  <form #addApplicationTreatmentForm="ngForm">
+      <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="date">Date</label>
+      <input type="date" class="form-control" id="date" placeholder="Enter Date" required maxlength="45"
+        [(ngModel)]="applicationtreatment.date" name="date" #date="ngModel">
+      <div [hidden]="date.valid || date.pristine" class="alert alert-danger">
+        Date is required
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="application_treatment">Land_Village</label>
+      <input type="text" class="form-control" id="application_treatment" placeholder="Enter application_treatment" required maxlength="45"
+        [(ngModel)]="applicationtreatment.application_treatment" name="application_treatment" #application_treatment="ngModel">
+      <div [hidden]="application_treatment.valid || application_treatment.pristine" class="alert alert-danger">
+        Land_Village is required
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="farmer_land_village_id">Former_Land_Village_Id</label>
+      <select class="form-control" id="farmer_land_village_id" name="farmer_land_village_id" [(ngModel)]="applicationtreatment.farmer_land_village_id" #farmer_land_village_id="ngModel">
+          <option *ngFor="let applicationtreatment1 of landvillages" [value]="applicationtreatment1.id">
+              {{applicationtreatment1.id}}
+            </option> 
+        </select>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="applied">Applied</label>
+      <input type="text" class="form-control" id="applied" placeholder="Enter applied" required maxlength="45"
+        [(ngModel)]="applicationtreatment.applied" name="applied" #applied="ngModel">
+      <div [hidden]="applied.valid || applied.pristine" class="alert alert-danger">
+        Applied is required
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="ssp">SSP</label>
+      <input type="text" class="form-control" id="ssp" placeholder="Enter ssp" required maxlength="45"
+        [(ngModel)]="applicationtreatment.ssp" name="ssp" #ssp="ngModel">
+      <div [hidden]="ssp.valid || ssp.pristine" class="alert alert-danger">
+        SSP is required
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="mcp">MCP</label>
+      <input type="text" class="form-control" id="mcp" placeholder="Enter mcp" required maxlength="45"
+        [(ngModel)]="applicationtreatment.mcp" name="mcp" #mcp="ngModel">
+      <div [hidden]="mcp.valid || mcp.pristine" class="alert alert-danger">
+        MCP is required
+      </div>
+    </div>
+      </div>
+    <div class="btn-group btn-group-sm" role="group">
+      <button type="button" class="btn btn-primary" (click)="addApplicationTreatmentForm.reset()">Clear</button>
+      <button type="button" class="btn btn-primary" (click)="addApplicationTreatmentDetail()"
+        [disabled]="!addApplicationTreatmentForm.form.valid">Save</button>
+    </div>
+  </form>
+</div>

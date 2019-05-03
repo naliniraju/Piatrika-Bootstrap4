@@ -1,0 +1,36 @@
+<div [hidden]="submitted">
+  <form #addVarietyForm="ngForm">
+      <div class="form-row">
+     <div class="form-group col-md-6">
+      <label for="variety">Variety</label>
+      <input type="text" class="form-control" id="variety" placeholder="Enter variety" required maxlength="45"
+        [(ngModel)]="varietee.variety" name="variety" #variety="ngModel">
+      <div [hidden]="variety.valid || variety.pristine" class="alert alert-danger">
+        Variety is required
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="text">Variety_Scientific_Name</label>
+      <input type="text" class="form-control" id="variety_scientific_name" placeholder="Enter variety_scientific_name" required maxlength="45"
+        [(ngModel)]="varietee.variety_scientific_name" name="variety_scientific_name" #variety_scientific_name="ngModel">
+      <div [hidden]="variety_scientific_name.valid || variety_scientific_name.pristine" class="alert alert-danger">
+        Variety_Scientific_Name is required
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="crop_id">Crop_Id</label>
+      <select class="form-control" id="crop_id" name="crop_id" [(ngModel)]="varietee.crop_id" #crop_id="ngModel">
+          <option *ngFor="let varietycrop of crops" [value]="varietycrop.id">
+              {{varietycrop.id}}
+            </option> 
+        </select>
+    </div>
+      </div>
+
+    <div class="btn-group btn-group-sm">
+      <button type="button" class="btn btn-primary" (click)="addVarietyForm.reset()">Clear</button>
+      <button type="button" class="btn btn-primary" (click)="addVarietyDetail()"
+        [disabled]="!addVarietyForm.form.valid">Save</button>
+    </div>
+  </form>
+</div>

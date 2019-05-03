@@ -1,0 +1,37 @@
+<div>
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Bank</th>
+            <th>Branch_Address</th>
+            <th>Bank_Code</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let mybank of banks">
+
+            <td>{{mybank.bank}}</td>
+            <td>{{mybank.branch_address}}</td>
+            <td>{{mybank.bank_code}}</td>
+           
+            <td>
+              <div class="btn-group btn-group-sm" role="group" style="background-color: transparent;">
+                <button class="btn btn-primary myspan" [routerLink]="['/banks', mybank.id]">Edit</button>
+                <span></span>
+                <button class="btn btn-sm btn-danger myspan" (click)="delete(mybank.id)">Delete</button>
+              </div>
+            </td>
+            
+          </tr>
+        
+        </tbody>
+      </table>
+   
+  
+  </div>
+  <div>
+    <button class="btn btn-warning myspan" (click)="goBack()">Back</button>
+  </div>
+  
+  

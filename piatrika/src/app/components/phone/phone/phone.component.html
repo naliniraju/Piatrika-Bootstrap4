@@ -1,0 +1,37 @@
+<div>
+  <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Phone_Type</th>
+          <th>Number</th>
+          <th>Person_Id</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let phone of phones">
+
+          <td>{{phone.phone_type}}</td>
+          <td>{{phone.number}}</td>
+          <td>{{phone.person_id}}</td>
+         
+          <td>
+            <div class="btn-group btn-group-sm" style="background-color: transparent;">
+              <button class="btn btn-primary myspan" [routerLink]="['/phones', phone.id]">Edit</button>
+              <span></span>
+              <button class="btn btn-danger myspan" (click)="delete(phone.id)">Delete</button>
+            </div>
+          </td>
+          
+        </tr>
+      
+      </tbody>
+    </table>
+ 
+
+</div>
+
+<div>
+  <button class="btn btn-sm btn-warning myspan" (click)="goBack()">Back</button>
+</div>
+

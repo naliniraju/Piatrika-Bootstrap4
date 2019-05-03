@@ -1,0 +1,84 @@
+<div [hidden]="submitted">
+  <form #addLandVillageForm="ngForm">
+      <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="land_village">Land_Village_Code</label>
+      <input type="text" class="form-control" id="land_village_code" placeholder="Enter land_village_code" required maxlength="45"
+        [(ngModel)]="landvillage.land_village_code" name="land_village_code" #land_village_code="ngModel">
+      <div [hidden]="land_village_code.valid || land_village_code.pristine" class="alert alert-danger">
+        Land_Village_Code is required
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="land_village">Land_Village</label>
+      <input type="text" class="form-control" id="land_village" placeholder="Enter land_village" required maxlength="45"
+        [(ngModel)]="landvillage.land_village" name="land_village" #land_village="ngModel">
+      <div [hidden]="land_village.valid || land_village.pristine" class="alert alert-danger">
+        Land_Village is required
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="village_id">Village_Id</label>
+      <select class="form-control" id="village_id" name="village_id" [(ngModel)]="landvillage.village_id" #village_id="ngModel">
+          <option *ngFor="let landvillage1 of villages" [value]="landvillage1.id">
+              {{landvillage1.id}}
+            </option> 
+        </select>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="plot_no">Plot_No</label>
+      <input type="text" class="form-control" id="plot_no" placeholder="Enter plot_no" required maxlength="45"
+        [(ngModel)]="landvillage.plot_no" name="plot_no" #plot_no="ngModel">
+      <div [hidden]="plot_no.valid || plot_no.pristine" class="alert alert-danger">
+        Plot_No is required
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="distance">Distance</label>
+      <input type="text" class="form-control" id="distance" placeholder="Enter distance" required maxlength="45"
+        [(ngModel)]="landvillage.distance" name="distance" #distance="ngModel">
+      <div [hidden]="distance.valid || distance.pristine" class="alert alert-danger">
+        Distance is required
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="east">East</label>
+      <input type="text" class="form-control" id="east" placeholder="Enter east" required maxlength="45"
+        [(ngModel)]="landvillage.east" name="east" #east="ngModel">
+      <div [hidden]="east.valid || east.pristine" class="alert alert-danger">
+        East is required
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="west">West</label>
+      <input type="text" class="form-control" id="west" placeholder="Enter west" required maxlength="45"
+        [(ngModel)]="landvillage.west" name="west" #west="ngModel">
+      <div [hidden]="west.valid || west.pristine" class="alert alert-danger">
+        West is required
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="north">North</label>
+      <input type="text" class="form-control" id="north" placeholder="Enter north" required maxlength="45"
+        [(ngModel)]="landvillage.north" name="north" #north="ngModel">
+      <div [hidden]="north.valid || north.pristine" class="alert alert-danger">
+        North is required
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="south">South</label>
+      <input type="text" class="form-control" id="south" placeholder="Enter south" required maxlength="45"
+        [(ngModel)]="landvillage.south" name="south" #south="ngModel">
+      <div [hidden]="south.valid || south.pristine" class="alert alert-danger">
+        South is required
+      </div>
+    </div>
+      </div>
+
+    <div class="btn-group btn-group-sm">
+      <button type="button" class="btn btn-primary" (click)="addLandVillageForm.reset()">Clear</button>
+      <button type="button" class="btn btn-primary" (click)="addLandVillageDetail()"
+        [disabled]="!addLandVillageForm.form.valid">Save</button>
+    </div>
+  </form>
+</div>

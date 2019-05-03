@@ -1,0 +1,28 @@
+<div [hidden]="submitted">
+  <form #addCropForm="ngForm">
+      <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="crop_name">Crop_Name</label>
+      <input type="text" class="form-control" id="crop_name" placeholder="Enter crop_name" required maxlength="45"
+        [(ngModel)]="crop.crop_name" name="crop_name" #crop_name="ngModel">
+      <div [hidden]="crop_name.valid || crop_name.pristine" class="alert alert-danger">
+        Crop_Name is required
+      </div>
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="crop_scientific_name">Crop_Scientific_Name</label>
+      <input type="text" class="form-control" id="crop_scientific_name" placeholder="Enter crop_scientific_name" required maxlength="45"
+        [(ngModel)]="crop.crop_scientific_name" name="crop_scientific_name" #crop_scientific_name="ngModel">
+      <div [hidden]="crop_scientific_name.valid || crop_scientific_name.pristine" class="alert alert-danger">
+        Crop_Scientific_Name is required
+      </div>
+    </div>
+      </div>
+    <div class="btn-group btn-group-sm" role="group">
+      <button type="button" class="btn btn-primary" (click)="addCropForm.reset()">Clear</button>
+      <button type="button" class="btn btn-primary" (click)="addCropDetail()"
+        [disabled]="!addCropForm.form.valid">Save</button>
+    </div>
+  </form>
+</div>

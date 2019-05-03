@@ -1,0 +1,39 @@
+<div>
+  <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Condition</th>
+          <th>Identification</th>
+          <th>Advice_Given</th>
+          <th>Season_Id</th>
+          <th>Timestamp</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let plotvisit of plotvisits">
+
+          <td>{{plotvisit.condition}}</td>
+          <td>{{plotvisit.identification}}</td>
+          <td>{{plotvisit.advice_given}}</td>
+          <td>{{plotvisit.season_id}}</td>
+          <td>{{plotvisit.timestamp|date:'short'}}</td>
+         
+          <td>
+            <div class="btn-group btn-group-sm" style="background-color: transparent;">
+              <button class="btn btn-primary myspan" [routerLink]="['/plotvisits', plotvisit.id]">Edit</button>
+              <span></span>
+              <button class="btn btn-danger myspan" (click)="delete(plotvisit.id)">Delete</button>
+            </div>
+          </td>
+          
+        </tr>
+      
+      </tbody>
+    </table>
+ 
+
+</div>
+<div>
+  <button class="btn btn-sm btn-warning myspan" (click)="goBack()">Back</button>
+</div>

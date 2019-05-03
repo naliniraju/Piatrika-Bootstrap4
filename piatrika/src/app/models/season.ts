@@ -1,0 +1,20 @@
+export class Season {
+    id:number;
+    season_start:Date;
+    extent:string;
+    expected_harvesting:Date;
+    expected_planting:Date;
+    Farmers_id:number;
+    land_village_id:number;
+    current_variety:string;
+    previous_variety:string;
+    plant_type:string;
+    total_acres:string;
+    measurement_acres:string;
+    estimated_yield:string;
+    offer_no:string;
+    offer_date:Date;
+    agreement_date:Date;
+    agreement_acre:number;
+    agreement_tonne:number;
+}

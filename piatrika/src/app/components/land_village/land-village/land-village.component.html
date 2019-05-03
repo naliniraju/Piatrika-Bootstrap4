@@ -1,0 +1,46 @@
+<div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Land_Village_Code</th>
+        <th>Land_Village</th>
+        <th>Village_Id</th>
+        <th>Plot_No</th>
+        <th>Distance</th>
+        <th>East</th>
+        <th>West</th>
+        <th>North</th>
+        <th>South</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let landvillage of landvillages">
+
+        <td>{{landvillage.land_village_code}}</td>
+        <td>{{landvillage.land_village}}</td>
+        <td>{{landvillage.village_id}}</td>
+        <td>{{landvillage.plot_no}}</td>
+        <td>{{landvillage.distance}}</td>
+        <td>{{landvillage.east}}</td>
+        <td>{{landvillage.west}}</td>
+        <td>{{landvillage.north}}</td>
+        <td>{{landvillage.south}}</td>
+        <td>
+          <div class="btn-group btn-group-sm" style="background-color: transparent;">
+            <button class="btn btn-primary myspan" [routerLink]="['/landvillages', landvillage.id]">Edit</button>
+            <span></span>
+            <button class="btn btn-danger myspan" (click)="delete(landvillage.id)">Delete</button>
+          </div>
+        </td>
+
+      </tr>
+
+    </tbody>
+  </table>
+
+
+</div>
+<div>
+  <button class="btn btn-sm btn-warning myspan" (click)="goBack()">Back</button>
+</div>
