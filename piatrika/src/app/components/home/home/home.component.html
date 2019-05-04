@@ -1,16 +1,17 @@
    <div class="container-fluid">
-  <div class="card-group"><a *ngFor="let hero of heroes" routerLink="/{{hero.name}}" > 
+      <div class="row">
+
+  <div class="card-deck"><a *ngFor="let hero of heroes" routerLink="/{{hero.name}}" > 
       <div class="card" style="margin:10px;">
-      <img class="card-img-top" src="assets/piatrika-logo.png" alt="piatrika-logo" style="width:20vw">
-      <div class="card-body">
-      <h4 class="card-title">{{hero.name|uppercase}}</h4>
-      </div>
+        <p class="card-title bg-success text-white text-center">{{hero.name|uppercase}}</p>
+      <img class="card-img-top" src="assets/piatrika-logo.png" alt="piatrika-logo" style="width:22vw;">
       </div></a>
       
   </div>
+  </div>  
 </div>
 
-    
+
 
 <div class="container-fluid">
  
