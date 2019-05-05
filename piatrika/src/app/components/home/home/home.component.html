@@ -1,13 +1,11 @@
    <div class="container-fluid">
-      <div class="row">
 
-  <div class="card-deck"><a *ngFor="let hero of heroes" routerLink="/{{hero.name}}" > 
-      <div class="card" style="margin:10px;">
+  <div class="card-group"><a class="col-md-4" *ngFor="let hero of heroes" routerLink="/{{hero.name}}" id="myscardpan"> 
+      <div class="card">
         <p class="card-title bg-success text-white text-center">{{hero.name|uppercase}}</p>
-      <img class="card-img-top" src="assets/piatrika-logo.png" alt="piatrika-logo" style="width:22vw;">
+      <img class="card-img-top" src="assets/piatrika-logo.png" alt="piatrika-logo">
       </div></a>
       
-  </div>
   </div>  
 </div>
 
