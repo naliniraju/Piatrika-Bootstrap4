@@ -13,14 +13,7 @@
     margin: 0;
     margin-top: 5px;
   }
-<<<<<<< HEAD
-  
-=======
-/*   card-img-top{
-    width:100%;
-    height:auto;
-  } */
->>>>>>> 0019d84d6def90fe7557ecdde32fcbd8647e3c74
+
   agm-map {
     height: 30vh;
   }
