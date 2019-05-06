@@ -10,7 +10,7 @@ export class HomeComponent implements OnInit {
   {name:'banks'},{name:'crops'},{name:'divisionmodels'},{name:'farmers'},{name:'farmerbanks'},{name:'farmerrelations'},
   {name:'guarantors'},
   {name:'landvillages'},{name:'loans'},{name:'persons'},{name:'phones'},
-  {name:'plotvisits'},{name:'seasons'},{name:'villages'}
+  {name:'plotvisits'},{name:'seasons'},{name:'varietees'},{name:'villages'}
 ];
  
   latitude: number;

@@ -14,5 +14,6 @@ export class AppComponent implements OnInit {
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
     });
+ 
 }
 }

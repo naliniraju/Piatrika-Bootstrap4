@@ -13,10 +13,7 @@
     margin: 0;
     margin-top: 5px;
   }
-  card-img-top{
-    width:100%;
-    height:auto;
-  }
+  
   agm-map {
     height: 30vh;
   }
