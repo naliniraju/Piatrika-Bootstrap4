@@ -77,7 +77,24 @@
   
         </div>
         </div>
-  
+        <div class="form-group col-md-12 shadow p-3 mb-5 bg-white rounded">
+            <div class="form-row">
+            <div class="form-group col-md-6">
+            <label for="latitude">Latitude</label>
+            <input id="latitude" class="form-control" [(ngModel)]="farmer.latitude" name="latitude"
+            #latitude="ngModel"/>
+            </div> 
+            <div class="form-group col-md-6">
+             <label for="longitude">Longitude</label>
+            <input id="longitude" class="form-control" [(ngModel)]="farmer.longitude" name="longitude"
+            #longitude="ngModel"/>
+            </div>
+            </div>
+          <div id="mapid" style="height:300px;width:100%;">
+    
+          </div>
+          <br>
+        </div>
       <div class="btn-group btn-group-sm">
           <button type="button" class="btn btn-primary" (click)="update()"
             [disabled]="!editFarmerDetailForm.form.valid">Update</button>

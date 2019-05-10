@@ -9,4 +9,6 @@ export class Farmer {
     City:string;
     person_id:number;
     ryot_photo:string;
+    latitude:number;
+    longitude:number;
 }

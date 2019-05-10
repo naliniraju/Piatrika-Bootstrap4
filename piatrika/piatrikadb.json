@@ -103,7 +103,9 @@
       "litrary_status": "lts-1",
       "City": "cty-1",
       "person_id": 1,
-      "id": 1
+      "id": 1,
+      "latitude": "17.4405036039824740",
+      "longitude": "78.392445445060740"
     },
     {
       "csi_code": 2,
@@ -139,25 +141,27 @@
       "id": 4
     },
     {
-      "csi_code": 1,
-      "rno": "uuiyy",
-      "sysno": "uyuy",
-      "village_id": "2",
-      "csi_name": "uiou",
-      "litrary_status": "iouoiui",
-      "City": "uiuo",
-      "person_id": 2,
+      "csi_code": 5,
+      "rno": "rno-5",
+      "sysno": "sysno-5",
+      "village_id": "5",
+      "csi_name": "csi-5",
+      "litrary_status": "lts-5",
+      "City": "cty-5",
+      "person_id": 5,
       "id": 5
     },
     {
-      "csi_code": 7,
-      "rno": "hjhj",
-      "sysno": "hjhkjh",
+      "csi_code": 1,
+      "rno": "hjjkh",
+      "sysno": "kjhkjhjk",
       "village_id": "1",
-      "csi_name": "hhjh",
-      "litrary_status": "jhjkh",
-      "City": "jkhj",
-      "person_id": 2,
+      "csi_name": "huuyiu",
+      "litrary_status": "iuyiuyiu",
+      "City": "yiuyiu",
+      "person_id": 1,
+      "latitude": "17.461040213578684",
+      "longitude": "78.36135864257814",
       "id": 6
     }
   ],

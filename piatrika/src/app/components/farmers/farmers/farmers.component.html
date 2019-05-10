@@ -10,6 +10,8 @@
         <th>City</th>
         <th>Person_ID</th>
         <th>Ryot_Photo</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -25,11 +27,14 @@
         <td>{{farmer.City}}</td>
         <td>{{farmer.person_id}}</td>
         <td>{{farmer.ryot_photo}}</td>
+        <td>{{farmer.latitude}}</td>
+        <td>{{farmer.longitude}}</td>
         <td>
           <div class="btn-group btn-group-sm" style="background-color: transparent;">
             <button class="btn btn-primary myspan" [routerLink]="['/farmers', farmer.id]">Edit</button>
             <span></span>
             <button class="btn btn-danger myspan" (click)="delete(farmer.id)">Delete</button>
+         
           </div>
         </td>
 
@@ -37,6 +42,7 @@
 
     </tbody>
   </table>
+
   <br><button class="btn btn-sm btn-warning myspan" (click)="goBack()">Back</button>
 
 </div>

@@ -7,9 +7,24 @@ import { FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Village } from 'src/app/models/village';
 import { VillageService } from 'src/app/services/village/village.service';
-// import LocationPicker from "location-picker";
-
-
+declare let L;
+declare var $:any;
+import '../../../../../node_modules/leaflet-routing-machine/dist/leaflet-routing-machine.js'
+import { icon, Marker } from 'leaflet';
+const iconRetinaUrl = 'assets/leaflet/images/marker-icon-2x.png';
+const iconUrl = 'assets/leaflet/images/marker-icon.png';
+const shadowUrl = 'assets/leaflet/images/marker-shadow.png';
+const iconDefault = icon({
+  iconRetinaUrl,
+  iconUrl,
+  shadowUrl,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  tooltipAnchor: [16, -28],
+  shadowSize: [41, 41]
+});
+Marker.prototype.options.icon = iconDefault;
 @Component({
   selector: 'app-add-farmers',
   templateUrl: './add-farmers.component.html',
@@ -23,7 +38,6 @@ export class AddFarmersComponent implements OnInit {
   uploadForm: FormGroup;
   villages: Village[];
   url: string | ArrayBuffer;
-  // lp: LocationPicker;
 
 
   private piatrikaUrl = 'http://localhost:3000/farmers';
@@ -38,8 +52,41 @@ export class AddFarmersComponent implements OnInit {
      }
   ngOnInit() {
     this.villageService.getVillageDetails().subscribe(data => this.villages = data);
-    // this.lp = new LocationPicker('map');
+     function addMapPicker() {
+      navigator.geolocation.getCurrentPosition(function(location) {
+          let mapCenter = new L.LatLng(location.coords.latitude, location.coords.longitude);
+        
+          let map = L.map('mapid').setView(mapCenter, 13)
+ 
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+  
+  var marker = L.marker(mapCenter).addTo(map);
+  var updateMarker = function(lat, lng) {
+      marker
+          .setLatLng([lat, lng])
+          .bindPopup("Your location :  " + marker.getLatLng().toString())
+          .openPopup();
+      return false;
+  };
+  map.on('click', function(e) {
+      $('#latitude').val(e.latlng.lat);
+      $('#longitude').val(e.latlng.lng);
+      updateMarker(e.latlng.lat, e.latlng.lng);
+      });
+      
+      var updateMarkerByInputs = function() {
+    return updateMarker( $('#latitude').val() , $('#longitude').val());
+  }
+  $('#latitude').on('input', updateMarkerByInputs);
+  $('#longitude').on('input', updateMarkerByInputs);
+});
+    }
 
+$(document).ready(function() {
+    addMapPicker();
+});
   }
   newFarmer(): void {
     this.submitted = false;
@@ -57,7 +104,6 @@ export class AddFarmersComponent implements OnInit {
       .subscribe();
     this.getFarmerDetails();
     this.router.navigate(['/farmers']);
-    // this.location.back();
   }
 
   getFarmerDetails() {
