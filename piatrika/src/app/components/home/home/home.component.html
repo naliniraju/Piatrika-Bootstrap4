@@ -1,16 +1,15 @@
-   <div class="container-fluid">
+   <div class="container-fluid shadow-sm p-3 mb-5 bg-white rounded">
 
-  <div class="card-group"><a class="col-md-4" *ngFor="let hero of heroes" routerLink="/{{hero.name}}" id="myscardpan"> 
-      <div class="card">
+  <div class="card-group shadow-sm p-3 mb-5 bg-white rounded">
+    <a class="col-md-4" *ngFor="let hero of heroes" routerLink="/{{hero.name}}" id="myscardpan"> 
+      <div class="card shadow-sm p-3 bg-white rounded">
         <p class="card-title bg-success text-white text-center">{{hero.name|uppercase}}</p>
       <img class="card-img-top" src="assets/piatrika-logo.png" alt="piatrika-logo">
       </div></a>
       
   </div>  
 </div>
-
-
-
+<!-- 
 <div class="container-fluid">
  
  <div class="form-group">
@@ -26,6 +25,6 @@
   <h5>Address: {{address}}</h5>
   <div>Latitude: {{latitude}}</div>
   <div>Longitude: {{longitude}}</div>
-</div>
+</div> -->
 
     
