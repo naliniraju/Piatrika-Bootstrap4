@@ -5,7 +5,7 @@
     <div class="form-group col-md-6">
       <label for="date">Date</label>
       <input type="text" class="form-control" id="date" placeholder="Enter Date" required maxlength="45"
-        [(ngModel)]="applicationtreatment.date" name="date" #date="ngModel" bsDatepicker [bsConfig]="datePickerConfig">
+        [(ngModel)]="applicationtreatment.date" name="date" #date="ngModel" bsDatepicker>
       <div [hidden]="date.valid || date.pristine" class="alert alert-danger">
         Date is required maxlength="45"
       </div>

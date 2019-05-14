@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { AgmCoreModule } from '@agm/core';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { LeafletDrawModule } from '@asymmetrik/ngx-leaflet-draw';
 
 import { AppComponent } from './app.component';
 import { AddFarmersComponent } from './components/farmers/add-farmers/add-farmers.component';
@@ -116,19 +117,9 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    // AgmCoreModule.forRoot({
-    //   apiKey: 'AIzaSyCSIFuXPQXel1splGkx5ElXoU1bL60Jn-I'
-    // }),
-    AgmCoreModule.forRoot({
-      apiKey:'AIzaSyCSIFuXPQXel1splGkx5ElXoU1bL60Jn-I',
-       libraries: ["places"]
-   }),
+    LeafletModule.forRoot(),
+		LeafletDrawModule.forRoot(),
     BsDatepickerModule.forRoot()
-  // AgmCoreModule.forRoot({
-  //   apiKey: 'AIzaSyAzSnXXXXXXXXXXXXXXXXXSZGGWU',
-  //   libraries: ['places']
-  // })
-  //mykey:AIzaSyAZuAnliAxFi5IsDoeGubpc3IQsy_AU1Gw
   ],
   providers: [],
   bootstrap: [AppComponent]

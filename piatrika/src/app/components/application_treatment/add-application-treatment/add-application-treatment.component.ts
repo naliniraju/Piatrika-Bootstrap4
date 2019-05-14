@@ -19,7 +19,7 @@ export class AddApplicationTreatmentComponent implements OnInit {
   submitted = false;
   applicationtreatments: ApplicationTreatment[];
   landvillages: LandVillage[];
-  datePickerConfig:Partial<BsDatepickerConfig>;
+  // datePickerConfig:Partial<BsDatepickerConfig>;
   constructor(
     private applicationtreatmentService: ApplicationTreatmentService,
      private landvillageService: LandVillageService,

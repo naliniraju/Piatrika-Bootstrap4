@@ -9,7 +9,9 @@ import { Village } from 'src/app/models/village';
 import { VillageService } from 'src/app/services/village/village.service';
 declare let L;
 declare var $:any;
-import '../../../../../node_modules/leaflet-routing-machine/dist/leaflet-routing-machine.js'
+import '../../../../../node_modules/leaflet-routing-machine/dist/leaflet-routing-machine.js';
+
+
 import { icon, Marker } from 'leaflet';
 const iconRetinaUrl = 'assets/leaflet/images/marker-icon-2x.png';
 const iconUrl = 'assets/leaflet/images/marker-icon.png';
@@ -31,7 +33,7 @@ Marker.prototype.options.icon = iconDefault;
   styleUrls: ['./add-farmers.component.css']
 })
 export class AddFarmersComponent implements OnInit {
-
+ 
   farmer: Farmer = new Farmer();
   submitted = false;
   farmers: Farmer[];
@@ -52,41 +54,8 @@ export class AddFarmersComponent implements OnInit {
      }
   ngOnInit() {
     this.villageService.getVillageDetails().subscribe(data => this.villages = data);
-     function addMapPicker() {
-      navigator.geolocation.getCurrentPosition(function(location) {
-          let mapCenter = new L.LatLng(location.coords.latitude, location.coords.longitude);
-        
-          let map = L.map('mapid').setView(mapCenter, 13)
- 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(map);
-  
-  var marker = L.marker(mapCenter).addTo(map);
-  var updateMarker = function(lat, lng) {
-      marker
-          .setLatLng([lat, lng])
-          .bindPopup("Your location :  " + marker.getLatLng().toString())
-          .openPopup();
-      return false;
-  };
-  map.on('click', function(e) {
-      $('#latitude').val(e.latlng.lat);
-      $('#longitude').val(e.latlng.lng);
-      updateMarker(e.latlng.lat, e.latlng.lng);
-      });
-      
-      var updateMarkerByInputs = function() {
-    return updateMarker( $('#latitude').val() , $('#longitude').val());
-  }
-  $('#latitude').on('input', updateMarkerByInputs);
-  $('#longitude').on('input', updateMarkerByInputs);
-});
-    }
-
-$(document).ready(function() {
-    addMapPicker();
-});
+    this.setLocation();
+   
   }
   newFarmer(): void {
     this.submitted = false;
@@ -127,10 +96,87 @@ $(document).ready(function() {
     }
 
   }
-//   setLocation() {
-//     console.log(this.lp.getMarkerPosition());
+  setLocation() {
+    function addMapPicker() {
+      navigator.geolocation.getCurrentPosition(function(location) {
+          let mapCenter = new L.LatLng(location.coords.latitude, location.coords.longitude);
+         // var map = L.map('mapid', { drawControl: true }).setView([25, 25], 2);
+
+          let map = L.map('mapid').setView(mapCenter, 16);
     
-//  }
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+ 
+
+  var marker = L.marker(mapCenter).addTo(map);
+  
+  var updateMarker = function(lat, lng) {
+      marker
+          .setLatLng([lat, lng])
+          .bindPopup("Your location :  " + marker.getLatLng().toString())
+          .openPopup();
+      return false;
+  };
+  map.on('click', function(e) {
+      $('#latitude').val(e.latlng.lat);
+      $('#longitude').val(e.latlng.lng);
+      updateMarker(e.latlng.lat, e.latlng.lng);
+      });
+      
+      var updateMarkerByInputs = function() {
+    return updateMarker( $('#latitude').val() , $('#longitude').val());
+  }
+  $('#latitude').on('input', updateMarkerByInputs);
+  $('#longitude').on('input', updateMarkerByInputs);
+
+// Initialise the FeatureGroup to store editable layers
+var drawnItems = new L.FeatureGroup();
+map.addLayer(drawnItems);
+
+
+// Initialise the draw control and pass it the FeatureGroup of editable layers
+var drawControl = new L.Control.Draw({
+  edit: {
+    featureGroup: drawnItems
+  }
+  
+});
+
+map.addControl(drawControl);
+
+map.on(L.Draw.Event.CREATED, function (e) {
+  //      map.removeLayer(marker);// remove marker
+
+  var type = e.layerType
+  var layer = e.layer;
+  
+
+  // Do whatever else you need to. (save to db, add to map etc)
+
+  drawnItems.addLayer(layer);
+  
+
+//   if (type === 'polygon') {
+//      latLngs = layer.getLatLng();
+//   }
+//   else
+//      latLngs = layer.getLatLngs(); // Returns an array of the points in the path.
+
+//   // process latLngs as you see fit and then save
+ });
+
+   });
+  
+
+
+    }
+
+$(document).ready(function() {
+    addMapPicker();
+});    
+ }
  
  
 
