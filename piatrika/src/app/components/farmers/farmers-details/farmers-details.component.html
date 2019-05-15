@@ -90,9 +90,16 @@
             #longitude="ngModel"/>
             </div>
             </div>
-          <div id="mapid" style="height:300px;width:100%;">
-    
-          </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="LatLng">LatLng</label>
+               <input id="LatLng" class="form-control" [(ngModel)]="farmer.LatLng" name="LatLng"
+               #LatLng="ngModel"/>
+               </div>
+              </div>
+            <div id="mapid" style="height:350px;width:100%;">
+              
+            </div>
           <br>
         </div>
       <div class="btn-group btn-group-sm">

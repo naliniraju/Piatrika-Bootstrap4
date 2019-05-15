@@ -12,6 +12,7 @@
         <th>Ryot_Photo</th>
         <th>Latitude</th>
         <th>Longitude</th>
+        <th>LatLngs</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -29,6 +30,7 @@
         <td>{{farmer.ryot_photo}}</td>
         <td>{{farmer.latitude}}</td>
         <td>{{farmer.longitude}}</td>
+        <td>{{farmer.LatLng}}</td>
         <td>
           <div class="btn-group btn-group-sm" style="background-color: transparent;">
             <button class="btn btn-primary myspan" [routerLink]="['/farmers', farmer.id]">Edit</button>

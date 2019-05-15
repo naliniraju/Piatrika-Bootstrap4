@@ -48,51 +48,66 @@ export class FarmersDetailsComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     this.farmerService.getFarmerDetail(id)
       .subscribe(farmer => this.farmer = farmer);
-      function addMapPicker() {
-        navigator.geolocation.getCurrentPosition(function(location) {
-            let mapCenter = new L.LatLng(location.coords.latitude, location.coords.longitude);
-          
-            let map = L.map('mapid').setView(mapCenter, 13)
-   
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-    
-    var marker = L.marker(mapCenter).addTo(map);
-    var updateMarker = function(lat, lng) {
-        marker
-            .setLatLng([lat, lng])
-            .bindPopup("Your location :  " + marker.getLatLng().toString())
-            .openPopup();
-        return false;
-    };
-    map.on('click', function(e) {
-        $('#latitude').val(e.latlng.lat);
-        $('#longitude').val(e.latlng.lng);
-        updateMarker(e.latlng.lat, e.latlng.lng);
-        });
-        
-        var updateMarkerByInputs = function() {
-      return updateMarker( $('#latitude').val() , $('#longitude').val());
-    }
-    $('#latitude').on('input', updateMarkerByInputs);
-    $('#longitude').on('input', updateMarkerByInputs);
-  });
-      }
-  
-  $(document).ready(function() {
-      addMapPicker();
-  });
+      this.setLocation();
   }
-//   getFarmerDetails() {
-//     return this.farmerService.getFarmerDetails()
-//                .subscribe(
-//                  farmers => {
-//                   console.log(farmers);
-//                   this.farmers = farmers;
-//                  }
-//                 );
-//  }
+
+setLocation(){
+  navigator.geolocation.getCurrentPosition(function(location) {
+              var mapCenter = new L.LatLng(location.coords.latitude, location.coords.longitude);
+    
+              var map = new L.map('mapid').setView(mapCenter, 18);
+  
+   
+   // Creating a Layer object
+   var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+   map.addLayer(layer);      // Adding layer to the map
+   
+   // Creating latlng object
+   var latlngs = [[17.441051,78.394892],[17.44055,78.3949080],[17.440683,78.3968120],[17.441322,78.396753]];
+   //var latlngs=map.getBounds().toBBoxString();
+  
+   console.log(latlngs);
+   // Creating a polygon
+   var polygon = L.polygon(latlngs, {color: 'green',width:'2px'});
+   
+   // Creating layer group
+   var layerGroup = L.layerGroup([polygon]);
+   layerGroup.addTo(map);    // Adding layer group to map
+   // Initialise the FeatureGroup to store editable layers
+   var drawnItems = new L.FeatureGroup();
+   map.addLayer(drawnItems);
+
+
+   // Initialise the draw control and pass it the FeatureGroup of editable layers
+   var drawControl = new L.Control.Draw({
+     edit: {
+       featureGroup: drawnItems
+     }
+
+   });
+
+   map.addControl(drawControl);
+
+   map.on(L.Draw.Event.CREATED, function (e) {
+     //      map.removeLayer(marker);// remove marker
+
+     var type = e.layerType
+     var layer = e.layer;
+     if (type === 'polygon') {
+       layer.bindPopup(layer.getLatLngs());
+
+       //$('#LatLng').val(map.getBounds().toBBoxString());
+       $('#LatLng').val(JSON.stringify(layer.toGeoJSON()));
+       // console.log(JSON.stringify(layer.toGeoJSON()));
+       // console.log(layer.getLatLngs());
+     }
+
+     // Do whatever else you need to. (save to db, add to map etc)
+
+     drawnItems.addLayer(layer);
+    });
+  });
+}
  update(): void {
    console.log(this.farmer);
   this.submitted = true;

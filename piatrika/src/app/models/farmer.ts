@@ -11,4 +11,5 @@ export class Farmer {
     ryot_photo:string;
     latitude:number;
     longitude:number;
+    LatLng:string;
 }
