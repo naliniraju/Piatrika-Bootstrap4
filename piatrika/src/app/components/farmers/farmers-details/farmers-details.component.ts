@@ -5,24 +5,13 @@ import { FarmersService } from 'src/app/services/farmers/farmers.service';
 import { Location } from '@angular/common';
 import { Village } from 'src/app/models/village';
 import { VillageService } from 'src/app/services/village/village.service';
-declare let L;
-declare var $:any;
-import '../../../../../node_modules/leaflet-routing-machine/dist/leaflet-routing-machine.js'
-import { icon, Marker } from 'leaflet';
-const iconRetinaUrl = 'assets/leaflet/images/marker-icon-2x.png';
-const iconUrl = 'assets/leaflet/images/marker-icon.png';
-const shadowUrl = 'assets/leaflet/images/marker-shadow.png';
-const iconDefault = icon({
-  iconRetinaUrl,
-  iconUrl,
-  shadowUrl,
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  tooltipAnchor: [16, -28],
-  shadowSize: [41, 41]
-});
-Marker.prototype.options.icon = iconDefault;
+import { latLng, Map, tileLayer } from 'leaflet';
+//import * as L from 'leaflet';
+import 'leaflet/dist/images/marker-shadow.png';
+import 'leaflet/dist/images/marker-icon.png';
+import * as $ from 'jquery'
+declare const L: any; // --> Works
+import 'leaflet-draw';
 @Component({
   selector: 'app-farmers-details',
   templateUrl: './farmers-details.component.html',
@@ -36,6 +25,9 @@ export class FarmersDetailsComponent implements OnInit {
   message: string;
   farmers:Farmer[];
   villages: Village[];
+  map: L.Map;
+  color:'green';
+
   constructor(
     private farmerService:FarmersService,
     private villageService:VillageService,
@@ -48,66 +40,9 @@ export class FarmersDetailsComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     this.farmerService.getFarmerDetail(id)
       .subscribe(farmer => this.farmer = farmer);
-      this.setLocation();
   }
 
-setLocation(){
-  navigator.geolocation.getCurrentPosition(function(location) {
-              var mapCenter = new L.LatLng(location.coords.latitude, location.coords.longitude);
-    
-              var map = new L.map('mapid').setView(mapCenter, 18);
-  
-   
-   // Creating a Layer object
-   var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-   map.addLayer(layer);      // Adding layer to the map
-   
-   // Creating latlng object
-   var latlngs = [[17.441051,78.394892],[17.44055,78.3949080],[17.440683,78.3968120],[17.441322,78.396753]];
-   //var latlngs=map.getBounds().toBBoxString();
-  
-   console.log(latlngs);
-   // Creating a polygon
-   var polygon = L.polygon(latlngs, {color: 'green',width:'2px'});
-   
-   // Creating layer group
-   var layerGroup = L.layerGroup([polygon]);
-   layerGroup.addTo(map);    // Adding layer group to map
-   // Initialise the FeatureGroup to store editable layers
-   var drawnItems = new L.FeatureGroup();
-   map.addLayer(drawnItems);
 
-
-   // Initialise the draw control and pass it the FeatureGroup of editable layers
-   var drawControl = new L.Control.Draw({
-     edit: {
-       featureGroup: drawnItems
-     }
-
-   });
-
-   map.addControl(drawControl);
-
-   map.on(L.Draw.Event.CREATED, function (e) {
-     //      map.removeLayer(marker);// remove marker
-
-     var type = e.layerType
-     var layer = e.layer;
-     if (type === 'polygon') {
-       layer.bindPopup(layer.getLatLngs());
-
-       //$('#LatLng').val(map.getBounds().toBBoxString());
-       $('#LatLng').val(JSON.stringify(layer.toGeoJSON()));
-       // console.log(JSON.stringify(layer.toGeoJSON()));
-       // console.log(layer.getLatLngs());
-     }
-
-     // Do whatever else you need to. (save to db, add to map etc)
-
-     drawnItems.addLayer(layer);
-    });
-  });
-}
  update(): void {
    console.log(this.farmer);
   this.submitted = true;
@@ -131,6 +66,76 @@ onFileSelect(event) {
   //   (err) => console.log(err)
   // );
   
+}
+drawOptions = {
+  position: 'topleft',
+  draw: {
+    polyline: {
+      shapeOptions: {
+        color: this.color
+      }
+    }
+  }
+};
+options = {
+  layers: [
+    tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
+  ],
+  zoom: 18,
+  center: latLng(8.524139, 76.936638)
+};
+
+   
+onMapReady(map: Map) {
+  
+
+  function onLocationFound(e) {
+    
+      // Creating latlng object
+      var latlngs = [[17.441051,78.394892],[17.44055,78.3949080],[17.440683,78.3968120],[17.441322,78.396753]];
+      //var latlngs=map.getBounds().toBBoxString();
+     
+      console.log(latlngs);
+      // Creating a polygon
+      var polygon = L.polygon(latlngs, {color: 'green',width:'2px'});
+      
+      // Creating layer group
+      var layerGroup = L.layerGroup([polygon]);
+      layerGroup.addTo(map);    // Adding layer group to map
+
+    L.marker(e.latlng,{draggable:'true'}).on('dragend',(e)=>{
+      $('#latitude').val(e.target.getLatLng().lat);
+      $('#longitude').val(e.target.getLatLng().lng);
+    }).addTo(map)
+      .bindPopup("Current Location :" + e.latlng.lat +','+e.latlng.lng);
+      $('#latitude').val(e.latlng.lat);
+      $('#longitude').val(e.latlng.lng);
+     }
+
+  function onLocationError(e) {
+    alert(e.message);
+  }
+
+  map.on('locationfound', onLocationFound);
+  map.on('locationerror', onLocationError);
+
+  map.locate({setView: true, maxZoom: 18});
+  map.on(L.Draw.Event.CREATED, function (e: any) {
+    const type = (e as any).layerType,
+      layer = (e as any).layer;
+
+    if (type === 'polygon') {
+      // here you got the polygon coordinates
+
+      const polygonCoordinates = layer._latlngs;
+      console.log(polygonCoordinates);
+    
+    //  layer.bindPopup(JSON.stringify(layer.toGeoJSON()) + '<br>' + layer._latlngs + '<br>' + map.getBounds().toBBoxString());
+      $('#LatLng').val(map.getBounds().toBBoxString());
+      
+    }
+  });
+
 }
 
 }

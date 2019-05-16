@@ -97,9 +97,14 @@
                #LatLng="ngModel"/>
                </div>
               </div>
-            <div id="mapid" style="height:350px;width:100%;">
-              
-            </div>
+              <div
+              leaflet 
+              style="height: 60vh;"
+                leafletDraw
+                [leafletOptions]="options"
+                [leafletDrawOptions]="drawOptions"
+                (leafletMapReady)="onMapReady($event)">
+            </div>              
           <br>
         </div>
       <div class="btn-group btn-group-sm">
