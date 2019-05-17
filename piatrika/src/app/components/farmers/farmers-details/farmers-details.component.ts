@@ -87,22 +87,8 @@ options = {
 
    
 onMapReady(map: Map) {
-  
 
   function onLocationFound(e) {
-    
-      // Creating latlng object
-      var latlngs = [[17.441051,78.394892],[17.44055,78.3949080],[17.440683,78.3968120],[17.441322,78.396753]];
-      //var latlngs=map.getBounds().toBBoxString();
-     
-      console.log(latlngs);
-      // Creating a polygon
-      var polygon = L.polygon(latlngs, {color: 'green',width:'2px'});
-      
-      // Creating layer group
-      var layerGroup = L.layerGroup([polygon]);
-      layerGroup.addTo(map);    // Adding layer group to map
-
     L.marker(e.latlng,{draggable:'true'}).on('dragend',(e)=>{
       $('#latitude').val(e.target.getLatLng().lat);
       $('#longitude').val(e.target.getLatLng().lng);
@@ -119,22 +105,31 @@ onMapReady(map: Map) {
   map.on('locationfound', onLocationFound);
   map.on('locationerror', onLocationError);
 
+
   map.locate({setView: true, maxZoom: 18});
   map.on(L.Draw.Event.CREATED, function (e: any) {
     const type = (e as any).layerType,
       layer = (e as any).layer;
-
     if (type === 'polygon') {
       // here you got the polygon coordinates
-
-      const polygonCoordinates = layer._latlngs;
-      console.log(polygonCoordinates);
-    
-    //  layer.bindPopup(JSON.stringify(layer.toGeoJSON()) + '<br>' + layer._latlngs + '<br>' + map.getBounds().toBBoxString());
-      $('#LatLng').val(map.getBounds().toBBoxString());
+       // layer.bindPopup(JSON.stringify(layer.toGeoJSON()) + '<br>' + layer._latlngs + '<br>' + map.getBounds().toBBoxString());
+      $('#LatLng').val(JSON.stringify(layer.toGeoJSON()));
+      layer.bindPopup(JSON.stringify(layer.toGeoJSON()));
       
-    }
-  });
+        }
+     });
+      //copied data from our database
+      let jsonDrawn='{"type":"Polygon","coordinates":[[[78.394608,17.441698],[78.394608,17.440877],[78.396329,17.440835],[78.396385,17.441581],[78.394608,17.4416980]]]}'
+      let json = JSON.parse(jsonDrawn);
+      
+    //static data
+      let latlngs = [[17.441051,78.394892],[17.44055,78.3949080],[17.440683,78.3968120],[17.441322,78.396753]];
+      
+      let polygon1 = L.polygon(latlngs, {color: 'red',width:'2px'});
+      
+      //console.log(polygon1);
+      let layerGroup = L.layerGroup([polygon1]);
+      layerGroup.addTo(map);
 
 }
 

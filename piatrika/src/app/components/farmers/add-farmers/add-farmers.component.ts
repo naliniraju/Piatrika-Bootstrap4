@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Farmer } from 'src/app/models/farmer';
-import { Router, GuardsCheckEnd } from '@angular/router';
+import { Router } from '@angular/router';
 import { FarmersService } from 'src/app/services/farmers/farmers.service';
 import { FormGroup } from '@angular/forms';
 import { Village } from 'src/app/models/village';
@@ -27,18 +27,22 @@ export class AddFarmersComponent implements OnInit {
   villages: Village[];
   url: string | ArrayBuffer;
   map: L.Map;
-  color = 'green';
+  color='#128128';
+  public formGroup:FormGroup;
+  // latitude=this.farmerService.getFarmerDetails().subscribe(data=>this.latitude=data)[10];
+  // longitude=this.farmerService.getFarmerDetails().subscribe(data=>this.longitude=data)[11];
+
 
 
   constructor(
     private farmerService: FarmersService,
     private villageService: VillageService,
     private router: Router,
-  ) {
+      ) {
   }
   ngOnInit() {
     this.villageService.getVillageDetails().subscribe(data => this.villages = data);
-  }
+      }
 
   newFarmer(): void {
     this.submitted = false;
@@ -80,9 +84,9 @@ export class AddFarmersComponent implements OnInit {
 
   }
   drawOptions = {
-    position: 'topleft',
+    position: 'topright',
     draw: {
-      polyline: {
+      polygon: {
         shapeOptions: {
           color: this.color
         }
@@ -97,46 +101,47 @@ export class AddFarmersComponent implements OnInit {
     center: latLng(8.524139, 76.936638)
   };
 
-
+     
   onMapReady(map: Map) {
-
+    
 
     function onLocationFound(e) {
-
-      L.marker(e.latlng, { draggable: 'true' }).on('dragend', (e) => {
+      L.marker(e.latlng,{draggable:'true'}).on('dragend',(e)=>{
         $('#latitude').val(e.target.getLatLng().lat);
         $('#longitude').val(e.target.getLatLng().lng);
-      }).addTo(map)
-        .bindPopup("Current Location :" + e.latlng.lat + ',' + e.latlng.lng);
-      $('#latitude').val(e.latlng.lat);
-      $('#longitude').val(e.latlng.lng);
-      
-    }
-
+       }).addTo(map)
+        .bindPopup("Current Location :" + e.latlng.lat +','+e.latlng.lng);
+        $('#latitude').val(e.latlng.lat);
+        $('#longitude').val(e.latlng.lng);
+     
+        }
+  
     function onLocationError(e) {
-      alert(e.message);
+      console.log(e.message);
     }
-
+  
     map.on('locationfound', onLocationFound);
     map.on('locationerror', onLocationError);
-
-    map.locate({ setView: true, maxZoom: 18 });
+  
+    map.locate({setView: true, maxZoom: 18});
     map.on(L.Draw.Event.CREATED, function (e: any) {
       const type = (e as any).layerType,
         layer = (e as any).layer;
 
       if (type === 'polygon') {
         // here you got the polygon coordinates
-        const polygonCoordinates = layer._latlngs;
-        console.log(polygonCoordinates);
-        layer.bindPopup(JSON.stringify(layer.toGeoJSON()) + '<br>' + layer._latlngs + '<br>' + map.getBounds().toBBoxString());
-        $('#LatLng').val(map.getBounds().toBBoxString());
-
+        //const polygonCoordinates = layer._latlngs;
+       // console.log(polygonCoordinates);
+        //layer.bindPopup(JSON.stringify(layer.toGeoJSON()) + '<br>' + layer._latlngs + '<br>' + map.getBounds().toBBoxString());
+      
+        $('#LatLng').val(JSON.stringify(layer.toGeoJSON()));
+        
       }
+    
     });
 
   }
 
-}
+ }
 
 

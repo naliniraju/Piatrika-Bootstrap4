@@ -320,6 +320,34 @@
       "longitude": "78.395535796771580",
       "LatLng": "78.39278340339662,17.439582396087232,78.398265838623060,17.442724719439234",
       "id": 16
+    },
+    {
+      "csi_code": 1,
+      "rno": "hjh",
+      "sysno": "jkhjkh",
+      "village_id": "3",
+      "csi_name": "iuiu",
+      "litrary_status": "oiuiu",
+      "City": "iouiou",
+      "person_id": 1,
+      "latitude": "17.44119640",
+      "longitude": "78.395549899999990",
+      "LatLng": "LatLng(17.441661, 78.396664),LatLng(17.440558, 78.3963480),LatLng(17.440592, 78.397331),LatLng(17.442139, 78.397838)",
+      "id": 17
+    },
+    {
+      "LatLng": "{\"type\":\"Feature\",\"properties\":{},\"geometry\":{\"type\":\"Polygon\",\"coordinates\":[[[78.3934910,17.441392],[78.393837,17.440448],[78.39466,17.440926],[78.394445,17.441853],[78.393491,17.441392]]]}}",
+      "latitude": "17.44117940",
+      "longitude": "78.39551270",
+      "person_id": 1,
+      "village_id": "3",
+      "csi_code": 1,
+      "rno": "huyu",
+      "sysno": "yuiyui",
+      "csi_name": "iuy",
+      "litrary_status": "yuuiyu",
+      "City": "yuyu",
+      "id": 18
     }
   ],
   "landvillages": [

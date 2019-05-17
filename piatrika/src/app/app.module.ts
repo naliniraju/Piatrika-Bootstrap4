@@ -119,7 +119,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     HttpClientModule,
     LeafletModule.forRoot(),
 		LeafletDrawModule.forRoot(),
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
