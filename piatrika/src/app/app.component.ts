@@ -14,7 +14,18 @@ export class AppComponent implements OnInit {
     $("#menu-toggle").click(function(e) {
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
-    });
+        });
+        
+        this.ToggleNavBar();
+           }
+           
+           ToggleNavBar () {
+            let element: HTMLElement = document.getElementsByClassName( 'navbar-toggler' )[ 0 ] as HTMLElement;
+            if ( element.getAttribute( 'aria-expanded' ) == 'true' ) {
+                element.click();
+            }
  
-}
+        }
+   
+           
 }
