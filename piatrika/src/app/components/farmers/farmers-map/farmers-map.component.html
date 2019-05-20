@@ -1,0 +1,34 @@
+<div class="shadow p-3 mb-5 bg-white rounded">
+<div
+leaflet 
+style="height: 60vh;"
+  leaflepraw
+  [leafletOptions]="options"
+  (leafletMapReady)="onMapReady($event)">
+</div>
+<br>
+<div class="list-group list-group-flush">
+  <div class="list-group-item list-group-item-action">CSI_CODE: <span id="myspan">{{farmer.csi_code}}</span></div>
+  <div class="list-group-item list-group-item-action">R.NO.:<span id="myspan">{{farmer.rno}}</span></div>
+  <div class="list-group-item list-group-item-action">SYS NO.:<span id="myspan">{{farmer.sysno}}</span></div>
+  <div class="list-group-item list-group-item-action">VILLAGE ID:<span id="myspan">{{farmer.village_id}}</span></div>
+  <div class="list-group-item list-group-item-action">CSI_NAME:<span id="myspan">{{farmer.csi_name}}</span></div>
+  <div class="list-group-item list-group-item-action">LITRARY_STATUS:<span id="myspan">{{farmer.litrary_status}}</span></div>
+  <div class="list-group-item list-group-item-action">CITY:<span id="myspan">{{farmer.City}}</span></div>
+  <div class="list-group-item list-group-item-action">PERSON_ID:<span id="myspan">{{farmer.person_id}}</span></div>
+  <div class="list-group-item list-group-item-action">RYOT_PHOTO:<span id="myspan">{{farmer.ryot_photo}}</span></div>
+  <div class="list-group-item list-group-item-action">LATITUDE:<span id="myspan">{{farmer.latitude}}</span></div>
+  <div class="list-group-item list-group-item-action">LONGITUDE:<span id="myspan">{{farmer.longitude}}</span></div>
+  <div class="list-group-item list-group-item-action">LATLNG:<span id="myspan">{{farmer.LatLng}}</span></div>
+</div>
+
+       
+        <br>
+        <div class="btn-group btn-group-sm">
+          <button type="button" class="btn btn-warning" (click)="goBack()">Back</button>
+        </div>
+        
+</div>
+
+
+

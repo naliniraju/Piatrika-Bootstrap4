@@ -5,14 +5,14 @@
         <th>RNo</th>
         <th>SysNo</th>
         <th>Village_Id</th>
-        <th>CSI_Name</th>
-        <th>Litrary_Status</th>
+        <!-- <th>CSI_Name</th>
+        <th>Litrary_Status</th> -->
         <th>City</th>
-        <th>Person_ID</th>
+        <!-- <th>Person_ID</th>
         <th>Ryot_Photo</th>
         <th>Latitude</th>
         <th>Longitude</th>
-        <th>LatLngs</th>
+        <th>LatLngs</th> -->
         <th>Actions</th>
       </tr>
     </thead>
@@ -23,20 +23,23 @@
         <td>{{farmer.rno}}</td>
         <td>{{farmer.sysno}}</td>
         <td>{{farmer.village_id}}</td>
-        <td>{{farmer.csi_name}}</td>
-        <td>{{farmer.litrary_status}}</td>
+        <!-- <td>{{farmer.csi_name}}</td>
+        <td>{{farmer.litrary_status}}</td> -->
         <td>{{farmer.City}}</td>
-        <td>{{farmer.person_id}}</td>
+        <!-- <td>{{farmer.person_id}}</td>
         <td>{{farmer.ryot_photo}}</td>
         <td>{{farmer.latitude}}</td>
         <td>{{farmer.longitude}}</td>
-        <td>{{farmer.LatLng}}</td>
-        <td>
-          <div class="btn-group btn-group-sm" style="background-color: transparent;">
+        <td>{{farmer.LatLng}}</td> -->
+        
+         <td><div class="btn-group btn-group-sm" style="background-color: transparent;">
+            <button class="btn btn-success myspan" [routerLink]="['/farmersmap', farmer.id]">Map</button>
+            <span></span>
             <button class="btn btn-primary myspan" [routerLink]="['/farmers', farmer.id]">Edit</button>
             <span></span>
             <button class="btn btn-danger myspan" (click)="delete(farmer.id)">Delete</button>
-         
+            
+            
           </div>
         </td>
 

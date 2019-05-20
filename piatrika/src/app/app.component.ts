@@ -10,6 +10,7 @@ export class AppComponent implements OnInit {
   title = 'piatrika';
 
   ngOnInit() {
+    $("#wrapper").toggleClass("toggled");
     $("#menu-toggle").click(function(e) {
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");

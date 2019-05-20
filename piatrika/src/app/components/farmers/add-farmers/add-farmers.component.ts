@@ -83,16 +83,16 @@ export class AddFarmersComponent implements OnInit {
     }
 
   }
-  drawOptions = {
-    position: 'topright',
-    draw: {
-      polygon: {
-        shapeOptions: {
-          color: this.color
-        }
-      }
-    }
-  };
+  // drawOptions = {
+  //   position: 'topright',
+  //   draw: {
+  //     polygon: {
+  //       shapeOptions: {
+  //         color: this.color
+  //       }
+  //     }
+  //   }
+  // };
   options = {
     layers: [
       tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')

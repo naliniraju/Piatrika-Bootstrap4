@@ -1,83 +1,84 @@
 import { Component, OnInit } from '@angular/core';
 import { Farmer } from 'src/app/models/farmer';
-import { ActivatedRoute } from '@angular/router';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { FarmersService } from 'src/app/services/farmers/farmers.service';
-import { Location } from '@angular/common';
-import { Village } from 'src/app/models/village';
-import { VillageService } from 'src/app/services/village/village.service';
-import { latLng, Map, tileLayer, LatLng } from 'leaflet';
+import { Router } from '@angular/router';
+import { latLng, Map, tileLayer } from 'leaflet';
+import '../../../../../node_modules/leaflet-routing-machine/dist/leaflet-routing-machine.js'
+
 //import * as L from 'leaflet';
 import 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/images/marker-icon.png';
 import * as $ from 'jquery'
 declare const L: any; // --> Works
 import 'leaflet-draw';
-import { HttpErrorResponse } from '@angular/common/http';
-@Component({
-  selector: 'app-farmers-details',
-  templateUrl: './farmers-details.component.html',
-  styleUrls: ['./farmers-details.component.css']
-})
-export class FarmersDetailsComponent implements OnInit {
+import { ActivatedRoute } from '@angular/router';
+import { icon, Marker } from 'leaflet';
+const iconRetinaUrl = 'assets/leaflet/images/marker-icon-2x.png';
+const iconUrl = 'assets/leaflet/images/marker-icon.png';
+const shadowUrl = 'assets/leaflet/images/marker-shadow.png';
+const iconDefault = icon({
+  iconRetinaUrl,
+  iconUrl,
+  shadowUrl,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  tooltipAnchor: [16, -28],
+  shadowSize: [41, 41]
+});
+Marker.prototype.options.icon = iconDefault;
 
-   
+@Component({
+  selector: 'app-farmers-map',
+  templateUrl: './farmers-map.component.html',
+  styleUrls: ['./farmers-map.component.css']
+})
+export class FarmersMapComponent implements OnInit {
+
+ 
   farmer = new Farmer();
   submitted = false;
   message: string;
-  farmers:Farmer[];
-  villages: Village[];
+  farmers: Farmer[];
   map: L.Map;
   color:'#128128';
+  
 
-  constructor(
-    private farmerService:FarmersService,
-    private villageService:VillageService,
-    private route: ActivatedRoute,
-    private location: Location,
-  ) {}
+  constructor(private farmerService: FarmersService, private http: HttpClient,private router: Router,private route: ActivatedRoute,) { }
 
   ngOnInit(): void {
-    this.villageService.getVillageDetails().subscribe(data=>this.villages=data);
+    this.getFarmerDetails();
     const id = +this.route.snapshot.paramMap.get('id');
     this.farmerService.getFarmerDetail(id)
       .subscribe(farmer => this.farmer = farmer);
-      
+    }
+  getFarmerDetails() {
+    return this.farmerService.getFarmerDetails()
+      .subscribe(
+        farmers => {
+          console.log(farmers);
+          this.farmers = farmers
+        }
+      );
   }
+  delete(id: number) {
+    this.submitted = true;
+    let r = confirm("Are you sure you want to delete...?");
+    if (r == true) {
+      this.farmerService.deleteFarmerDetail(id)
+        .subscribe(result => {
+          this.message = "Farmer deleted Successfully!"
+          // console.log(result);
+          this.getFarmerDetails();
+        }, error => console.log(error));
 
-
- update(): void {
-   console.log(this.farmer);
-  this.submitted = true;
-  this.farmerService.updateFarmerDetail(this.farmer)
-      .subscribe(() => this.message = "Farmer Updated Successfully!");
-      //this.getFarmerDetails();
-      this.ngOnInit();
-    this.location.back();
-
-}
-onFileSelect(event) {
-  if (event.target.files.length > 0) {
-   // this.uploadForm.get('ryot_photo').setValue(file);
+    }
   }
-  // const formData = new FormData();
-  // formData.append('file', this.uploadForm.get('ryot_photo').value);
-
-  // this.http.post<any>(this.piatrikaUrl, formData).subscribe(
-  //   (res) => console.log(res),
-  //   (err) => console.log(err)
-  // );
+  goBack(){
+    this.router.navigateByUrl('farmers');
+  }
   
-}
-// drawOptions = {
-//   position: 'topright',
-//   draw: {
-//     polygon: {
-//       shapeOptions: {
-//         color: this.color
-//       }
-//     }
-//   }
-// };
 
 options = {
   layers: [
@@ -87,7 +88,7 @@ options = {
   center: latLng(8.524139, 76.936638)
 };
 
-   
+
 onMapReady(map: Map) {
 
   function onLocationFound(e) {
@@ -112,24 +113,24 @@ onMapReady(map: Map) {
 
   map.locate({setView: true, maxZoom: 18});
   
-  map.on(L.Draw.Event.EDITED, function (e: any) {
-    const type = (e as any).layerType,
-      layer = (e as any).layer;
-    if (type === 'polygon') {
-      // here you got the polygon coordinates
-       // layer.bindPopup(JSON.stringify(layer.toGeoJSON()) + '<br>' + layer._latlngs + '<br>' + map.getBounds().toBBoxString());
-      $('#LatLng').val(JSON.stringify(layer.toGeoJSON()));
-      layer.bindPopup(JSON.stringify(layer.toGeoJSON()));
-      drawnItems.addLayer(layer);
+  // map.on(L.Draw.Event.EDITED, function (e: any) {
+  //   const type = (e as any).layerType,
+  //     layer = (e as any).layer;
+  //   if (type === 'polygon') {
+  //     // here you got the polygon coordinates
+  //      // layer.bindPopup(JSON.stringify(layer.toGeoJSON()) + '<br>' + layer._latlngs + '<br>' + map.getBounds().toBBoxString());
+  //     $('#LatLng').val(JSON.stringify(layer.toGeoJSON()));
+  //     layer.bindPopup(JSON.stringify(layer.toGeoJSON()));
+  //     drawnItems.addLayer(layer);
 
 
-        }
-     });
+  //       }
+  //    });
      
       let drawnItems = L.featureGroup().addTo(map);
         
           //copied data from our database
-     // let jsonDrawn='{"type":"Polygon","coordinates":[[[78.395888,17.442099],[78.395781,17.441837],[78.396324,17.441752],[78.39664,17.442156],[78.395888,17.442099]]]}'
+     //let jsonDrawn='{"type":"Polygon","coordinates":[[[78.395888,17.442099],[78.395781,17.441837],[78.396324,17.441752],[78.39664,17.442156],[78.395888,17.442099]]]}'
        
       // this.farmerService.getFarmerDetails().subscribe(
       //   data => {
@@ -166,10 +167,7 @@ onMapReady(map: Map) {
           console.log (err.message);
         }
       );
-       
-        
-
-
+     
 }
 
 }

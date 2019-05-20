@@ -57,6 +57,7 @@ import { VarietyDetailsComponent } from './components/variety/variety-details/va
 import { VarietyComponent } from './components/variety/variety/variety.component';
 import { AddVarietyComponent } from './components/variety/add-variety/add-variety.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { FarmersMapComponent } from './components/farmers/farmers-map/farmers-map.component';
 
 @NgModule({
   declarations: [
@@ -110,6 +111,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     VarietyDetailsComponent,
     VarietyComponent,
     AddVarietyComponent,
+    FarmersMapComponent,
   ],
   imports: [
     BrowserModule,

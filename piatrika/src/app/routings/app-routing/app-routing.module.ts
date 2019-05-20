@@ -50,6 +50,7 @@ import { CropDetailsComponent } from 'src/app/components/crop/crop-details/crop-
 import { VarietyComponent } from 'src/app/components/variety/variety/variety.component';
 import { AddVarietyComponent } from 'src/app/components/variety/add-variety/add-variety.component';
 import { VarietyDetailsComponent } from 'src/app/components/variety/variety-details/variety-details.component';
+import { FarmersMapComponent } from 'src/app/components/farmers/farmers-map/farmers-map.component';
 
 const routes: Routes = [
   {
@@ -253,7 +254,10 @@ const routes: Routes = [
     path: 'varietees/:id',
     component: VarietyDetailsComponent
   },
-
+  {
+    path: 'farmersmap/:id',
+    component: FarmersMapComponent
+  },
 ];
 
 @NgModule({
