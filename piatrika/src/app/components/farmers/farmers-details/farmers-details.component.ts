@@ -112,7 +112,7 @@ onMapReady(map: Map) {
 
   map.locate({setView: true, maxZoom: 18});
   
-  map.on(L.Draw.Event.EDITED, function (e: any) {
+  map.on(L.Draw.Event.CREATED, function (e: any) {
     const type = (e as any).layerType,
       layer = (e as any).layer;
     if (type === 'polygon') {

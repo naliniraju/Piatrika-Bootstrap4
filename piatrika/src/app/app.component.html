@@ -7,16 +7,17 @@
     <a class="navbar-brand" routerLink='/home'>PIATRIKA</a>
 
 
-  <button class="navbar-toggler bg-light" type="button" data-toggle="collapse" 
+  <button class="navbar-toggler bg-light" type="button" data-toggle="collapse"
   data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false"
-     aria-label="Toggle navigation" style="padding: 8px 10px 8px 10px;">
+
+     aria-label="Toggle navigation" style="padding: 10px 12px 10px 12px;font-size: 16px;">
     <div class="icon-bar">
       <i class="fa fa-bars"></i>
     </div>        
   </button>
  
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" (click)="ToggleNavBar()">
     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
       <li class="nav-item">
         <a class="list-group-item list-group-item-action navbar-inverse" class="nav-link" routerLink='/home'>Home
