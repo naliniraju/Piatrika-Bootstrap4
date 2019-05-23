@@ -81,7 +81,9 @@ onFileSelect(event) {
 
 options = {
   layers: [
-    tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
+    tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+  })
   ],
   zoom: 18,
   center: latLng(8.524139, 76.936638)
@@ -110,7 +112,7 @@ onMapReady(map: Map) {
   map.on('locationerror', onLocationError);
 
 
-  map.locate({setView: true, maxZoom: 18});
+  map.locate({setView: true, maxZoom: 15});
   
   map.on(L.Draw.Event.CREATED, function (e: any) {
     const type = (e as any).layerType,
